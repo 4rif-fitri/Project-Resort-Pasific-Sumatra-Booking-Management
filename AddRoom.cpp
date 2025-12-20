@@ -121,7 +121,7 @@ void Room::displayDoneAdd() {
 	removeColorText();
 }
 
-void Room::AddRoom(HANDLE hConsole) {
+void Room::AddRoom() {
 	while (true) {
 		system("cls");
 		printLabel("Add Room");

@@ -27,7 +27,7 @@ public:
 
 	char tl = 218; // ┌  
 	char tr = 191; // ┐  
-	char bl = 192; // └  
+	char bl = 192; // └	  
 	char br = 217; // ┘  
 	char hor = 196; // ─  
 	char ver = 179; // │  
@@ -45,13 +45,13 @@ public:
 	void printLabel(string text) {
 		cout << tl;
 		for (int i = 0; i < 30; i++) cout << hor;
-		cout << tr << endl;
+		cout << endl;
 
-		cout << ver << setw(16) << text << setw(14) << ver << endl;
+		cout << ver << setw(16) << text << endl;
 
 		cout << bl;
 		for (int i = 0; i < 30; i++) cout << hor;
-		cout << br << endl << endl;
+		cout << endl << endl;
 	}
 
 	void printHeaderTable() {
@@ -163,7 +163,7 @@ public:
 	double setPrice();
 	bool sambung();
 	void displayDoneAdd();
-	void AddRoom(HANDLE hConsole);
+	void AddRoom();
 
 	//remove
 	void InsertDefaultNode(const string& name, double price, const string& type,const string& available = "Yes",const string& checkIn = " - ",const string& checkOut = " - ",const string& paymentStatus = " - ") {
@@ -202,12 +202,12 @@ public:
 	//Add implementation
 
 	//Sort implementation
-	void SortRoom(HANDLE hConsole);
+	void SortRoom();
 	//Sort implementation
 
 	//Search implementation
 	void showMenuCari(string listCari[], int baris, int length);
-	void SearchRoom(HANDLE hConsole);
+	void SearchRoom();
 	//Search implementation
 
 	//Delete implementation

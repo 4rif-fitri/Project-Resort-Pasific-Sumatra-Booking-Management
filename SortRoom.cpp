@@ -52,7 +52,7 @@ Room::Node* quickSortRecursive(Room::Node* head, Room::Node* end) {
     return newHead;
 }
 
-void Room::SortRoom(HANDLE hConsole) {
+void Room::SortRoom() {
     system("cls");
     printLabel("Sort Room by Price");
 

@@ -244,7 +244,7 @@ void Room::printTableFind(string typeFind, int dataCarian, double hargaCarian) {
 }
 
 // --- Fungsi Utama SearchRoom ---
-void Room::SearchRoom(HANDLE hConsole) {
+void Room::SearchRoom() {
     string listCari[] = {
         "Cari Berdasarkan Nombor Bilik (Sequential Search)",
         "Cari Berdasarkan Harga (Binary Search)"
