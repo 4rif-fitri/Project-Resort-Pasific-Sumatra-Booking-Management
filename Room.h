@@ -41,7 +41,7 @@ public:
 	Room() {};
 	~Room() {};
 
-	//Utiliti
+	// Utiliti cam guna banyak kali tampa batas
 	void printLabel(string text) {
 		cout << tl;
 		for (int i = 0; i < 30; i++) cout << hor;
@@ -148,7 +148,7 @@ public:
 	void removeBackgroundText() {
 		SetConsoleTextAttribute(hConsole, 7);
 	}
-	//Utiliti
+	// Utiliti
 
 	//Show implementation
 	void ShowRoom();
@@ -211,7 +211,6 @@ public:
 	//Search implementation
 
 	//Delete implementation
-	void printData(Node* temps,char ver);
 	void padam(
 		bool& found,
 		Node*& pHead,

@@ -2,48 +2,10 @@
 using namespace std;
 #include "Room.h"
 
-void Room::printData(Node* temps,char ver) {
-	cout << ver
-		<< setw(14) << temps->roomNumber << ver
-		<< setw(14) << temps->name << ver
-		<< setw(14) << temps->type << ver
-		<< setw(14) << temps->price << ver
-		<< setw(14) << temps->isaVailable << ver
-		<< setw(14) << temps->dateChackIn << ver
-		<< setw(14) << temps->dateChackOut << ver
-		<< setw(14) << temps->payment << ver
-	<< endl;
-}
-
 void Room::printTableDelete(int baris) {
 	system("cls");
 
-	cout << tl;
-	for (int i = 0; i < 7; i++){
-		for (int i = 0; i < 14; i++) cout << hor;
-		cout << tee_top;
-	}
-	for (int i = 0; i < 14; i++) cout << hor;
-	cout << tr << endl;
-
-	cout << ver
-	<< setw(14) << "Number Room" << ver
-	<< setw(14) << "Name" << ver
-	<< setw(14) << "Type" << ver
-	<< setw(14) << "Price" << ver
-	<< setw(14) << "Vailable" << ver
-	<< setw(14) << "Date ChackIn" << ver
-	<< setw(14) << "Date ChackOut" << ver
-	<< setw(14) << "Payment" << ver
-	<< endl;
-
-	cout << th;
-	for (int i = 0; i < 7; i++){
-		for (int i = 0; i < 14; i++) cout << hor;
-		cout << ddd;
-	}
-	for (int i = 0; i < 14; i++) cout << hor;
-	cout << th_right << endl;
+	printHeaderTable();
 
 	Node* temps = pHead;
 	int i = 1;
@@ -54,11 +16,11 @@ void Room::printTableDelete(int baris) {
 
 		if (selected) {
 			setBackgroundText();
-			printData(temps, ver);
+			printBodyTable(temps);
 		}
 		else {
 			removeBackgroundText();
-			printData(temps,ver);
+			printBodyTable(temps);
 		}
 
 		temps = temps->link;
@@ -66,14 +28,7 @@ void Room::printTableDelete(int baris) {
 	}
 	removeBackgroundText();
 
-
-	cout << bl;
-	for (int i = 0; i < 7; i++){
-		for (int i = 0; i < 14; i++) cout << hor;
-		cout << aaa;
-	}
-	for (int i = 0; i < 14; i++) cout << hor;
-	cout << sss << endl;
+	printFooterTable();
 
 	cout << "\nTekan Esc dua kali untuk back";
 }
