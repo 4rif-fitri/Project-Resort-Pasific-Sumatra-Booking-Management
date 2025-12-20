@@ -1,68 +1,71 @@
 #include <iostream>
 using namespace std;
 #include "Room.h"
+
+// Fungsi pembantu untuk mendapatkan nod terakhir
+Room::Node* getTail(Room::Node* cur) {
+    while (cur != nullptr && cur->link != nullptr) cur = cur->link;
+    return cur;
+}
+
+// Fungsi pembahagi (Partition)
+Room::Node* partition(Room::Node* head, Room::Node* end, Room::Node*& newHead, Room::Node*& newEnd) {
+    Room::Node* pivot = end;
+    Room::Node* prev = nullptr, * cur = head, * tail = pivot;
+
+    while (cur != pivot) {
+        if (cur->price < pivot->price) { // Susun Ascending (Murah ke Mahal)
+            if (newHead == nullptr) newHead = cur;
+            prev = cur;
+            cur = cur->link;
+        }
+        else {
+            if (prev) prev->link = cur->link;
+            Room::Node* tmp = cur->link;
+            cur->link = nullptr;
+            tail->link = cur;
+            tail = cur;
+            cur = tmp;
+        }
+    }
+    if (newHead == nullptr) newHead = pivot;
+    newEnd = tail;
+    return pivot;
+}
+
+Room::Node* quickSortRecursive(Room::Node* head, Room::Node* end) {
+    if (!head || head == end) return head;
+
+    Room::Node* newHead = nullptr, * newEnd = nullptr;
+    Room::Node* pivot = partition(head, end, newHead, newEnd);
+
+    if (newHead != pivot) {
+        Room::Node* tmp = newHead;
+        while (tmp->link != pivot) tmp = tmp->link;
+        tmp->link = nullptr;
+
+        newHead = quickSortRecursive(newHead, tmp);
+        tmp = getTail(newHead);
+        tmp->link = pivot;
+    }
+    pivot->link = quickSortRecursive(pivot->link, newEnd);
+    return newHead;
+}
+
 void Room::SortRoom(HANDLE hConsole) {
     system("cls");
     printLabel("Sort Room by Price");
 
-    if (totalRoom == 1) {
-        ShowAll();
-        //SetConsoleTextAttribute(hConsole, 12);
-        cout << "No Need To sort kerana room ada satu";
-        //SetConsoleTextAttribute(hConsole, 7);
-        cout << "\nTekan ESC to Back";
-        return;
+    if (pHead == nullptr || pHead->link == nullptr) {
+        cout << "Bilik tidak mencukupi untuk disusun." << endl;
     }
-
-    // --- Bubble Sort Implementation (Menukar Pointers) ---
-    Node* end = nullptr;
-    bool swapped;
-
-    do {
-        swapped = false;
-        Node* curr = pHead;
-        Node* prev = nullptr;
-
-        while (curr->link != end) {
-            Node* next = curr->link;
-
-            // Jika harga curr LEBIH BESAR daripada harga next, tukar NODE (Ascending: Termurah ke Termahal)
-            if (curr->price > next->price) {
-                // TUKAR SUSUNAN NODE (3 LANGKAH)
-
-                // 1. Ubah penunjuk head/prev
-                if (curr == pHead) {
-                    pHead = next;
-                }
-                else {
-                    prev->link = next;
-                }
-
-                // 2. Sambungkan curr kepada link asal next
-                curr->link = next->link;
-
-                // 3. Sambungkan next kepada curr
-                next->link = curr;
-
-                // Tetapkan semula pointer prev dan curr untuk kitaran seterusnya
-                prev = next;
-                swapped = true;
-            }
-            else {
-                // Jika tiada pertukaran
-                prev = curr;
-                curr = curr->link;
-            }
-        }
-        end = curr;
-    } while (swapped);
-
-    SetConsoleTextAttribute(hConsole, 10);
-    cout << "Sort By Harga (Termurah ke Termahal)\n\n";
-    SetConsoleTextAttribute(hConsole, 7);
-
+    else {
+        pHead = quickSortRecursive(pHead, getTail(pHead));
+        setColorText();
+        cout << "Bilik berjaya disusun (Quick Sort)!" << endl;
+        removeColorText();
+    }
     ShowAll();
-
-    cout << "\nTekan ESC to Back";
-    _getch();
+    cout << "\nTekan mana-mana kekunci untuk kembali...";
 }
+
