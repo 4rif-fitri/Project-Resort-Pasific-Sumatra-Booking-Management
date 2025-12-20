@@ -41,6 +41,40 @@ public:
 	Room() {};
 	~Room() {};
 
+	//remove
+	void InsertDefaultNode(const string& name, double price, const string& type, const string& available = "Yes", const string& checkIn = " - ", const string& checkOut = " - ", const string& paymentStatus = " - ") {
+
+		Node* pNew = new Node();
+
+		totalRoom++;
+
+		pNew->roomNumber = totalRoom;
+		pNew->name = name;
+		pNew->price = price;
+		pNew->type = type;
+
+		// Guna parameter yang baru dimasukkan
+		pNew->isaVailable = available;
+		pNew->dateChackIn = checkIn;
+		pNew->dateChackOut = checkOut;
+		pNew->payment = paymentStatus;
+
+		pNew->link = nullptr;
+
+		// Logik Linked List (sama seperti sebelum ini)
+		if (pHead == nullptr) {
+			pHead = pNew;
+		}
+		else {
+			Node* temp = pHead;
+			while (temp->link != nullptr) {
+				temp = temp->link;
+			}
+			temp->link = pNew;
+		}
+	}
+	//remove
+
 	// Utiliti cam guna banyak kali tampa batas
 	void printLabel(string text) {
 		cout << tl;
@@ -48,6 +82,20 @@ public:
 		cout << endl;
 
 		cout << ver << setw(16) << text << endl;
+
+		cout << bl;
+		for (int i = 0; i < 30; i++) cout << hor;
+		cout << endl << endl;
+	}
+
+	void printLabel(string text1, string text2) {
+		cout << endl;
+		cout << tl;
+		for (int i = 0; i < 30; i++) cout << hor;
+		cout << endl;
+
+		cout << ver << text1 << endl;
+		cout << ver << text2 << endl;
 
 		cout << bl;
 		for (int i = 0; i < 30; i++) cout << hor;
@@ -158,46 +206,14 @@ public:
 
 	//Add implementation
 	void optionType(int colum, string options[], int count_pilihan);
-	string setName();
-	string setType();
-	double setPrice();
+	string getName();
+	string getType();
+	double getPrice();
 	bool sambung();
 	void displayDoneAdd();
 	void AddRoom();
 
-	//remove
-	void InsertDefaultNode(const string& name, double price, const string& type,const string& available = "Yes",const string& checkIn = " - ",const string& checkOut = " - ",const string& paymentStatus = " - ") {
 
-		Node* pNew = new Node();
-
-		totalRoom++;
-
-		pNew->roomNumber = totalRoom;
-		pNew->name = name;
-		pNew->price = price;
-		pNew->type = type;
-
-		// Guna parameter yang baru dimasukkan
-		pNew->isaVailable = available;
-		pNew->dateChackIn = checkIn;
-		pNew->dateChackOut = checkOut;
-		pNew->payment = paymentStatus;
-
-		pNew->link = nullptr;
-
-		// Logik Linked List (sama seperti sebelum ini)
-		if (pHead == nullptr) {
-			pHead = pNew;
-		}
-		else {
-			Node* temp = pHead;
-			while (temp->link != nullptr) {
-				temp = temp->link;
-			}
-			temp->link = pNew;
-		}
-	}
-	//remove
 	
 	//Add implementation
 
@@ -221,6 +237,9 @@ public:
 		int& indexToFind
 	);
 
+	int getRoomNumber();
+	double getRoomPrice();
+
 	void cari(
 		int& counter, 
 		int& indexToFind, 
@@ -232,4 +251,8 @@ public:
 
 	void DeleteRoom();
 	//Delete implementation
+
+
+
+
 };

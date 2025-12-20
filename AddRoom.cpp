@@ -27,7 +27,7 @@ void Room::optionType(int colum, string options[],int count_pilihan) {
 	cout << "\r"; // Kembalikan kursor ke awal baris
 }
 
-string Room::setName() {
+string Room::getName() {
 	string name;
 	while (true) {
 		cout << "Name Room : ";
@@ -38,7 +38,7 @@ string Room::setName() {
 	}
 }
 
-string Room::setType() {
+string Room::getType() {
 	string options[] = { "Family", "Deluxe", "Standard", "VIP" };
 	int count_pilihan = sizeof(options) / sizeof(*options);
 
@@ -77,7 +77,7 @@ string Room::setType() {
 	return type;
 }
 
-double Room::setPrice() {
+double Room::getPrice() {
 	double price;
 
 	while (true) {
@@ -134,9 +134,9 @@ void Room::AddRoom() {
 		Node* pNew = new Node();
 
 		cout << "\nMasukkan Detail Room\n";
-		name = setName();
-		type = setType();
-		price = setPrice();
+		name = getName();
+		type = getType();
+		price = getPrice();
 
 		totalRoom = totalRoom++;
 

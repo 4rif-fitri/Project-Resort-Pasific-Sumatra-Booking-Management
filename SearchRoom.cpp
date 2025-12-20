@@ -1,141 +1,10 @@
-//#include <iostream>
-//#include <limits>
-//#include <iomanip>
-//#include <algorithm>
-//#include <windows.h>
-//#include <string>
-//#undef max
-//using namespace std;
-//#include "Room.h"
-
-//void showMenuCari(string listCari[], int baris, int length, HANDLE hConsole, function<void(string)>printLabel) {
-//	system("cls");
-//	printLabel("Carian");
-//
-//	for (int i = 0; i < length; i++){
-//		bool selected = (i == baris);
-//	
-//		if (selected) {
-//			SetConsoleTextAttribute(hConsole, 46);
-//			cout << " > " << listCari[i] << endl;
-//		}else {
-//			SetConsoleTextAttribute(hConsole, 7);
-//			cout << "   " << listCari[i] << endl;
-//		}
-//		SetConsoleTextAttribute(hConsole, 7);
-//	}
-//	cout << endl;
-//	printLabel("Guna Arow Up Or Down To Select");
-//	cout << "Pess ESC dua kali to Back";
-//
-//}
-//
-//void Room::printTableFind(string typeFind, int dataCarian, double hargaCarian) {
-//	if (typeFind == "number") {
-//
-//		Node* curr = pHead;
-//		
-//		while (curr != nullptr){
-//			bool isFound = false;
-//			if (isFound == false) {
-//				if (curr->roomNumber == dataCarian) {
-//					cout << curr->roomNumber << " " << curr->name << endl;
-//					isFound == true;
-//				}
-//
-//			}
-//			if (isFound == true) {
-//				break;
-//			}
-//			curr = curr->link;
-//		}
-//
-//	}
-//	else if (typeFind == "price") {
-//
-//
-//		Node* curr = pHead;
-//
-//		while (curr != nullptr) {
-//			if (curr->price == hargaCarian) {
-//				cout << curr->roomNumber << " " << curr->name << " " << curr->price << endl;
-//			}
-//			curr = curr->link;
-//		}
-//
-//	}
-//}
-//
-//void findByNumber() {
-//
-//}
-//
-//void findByPrice() {
-//
-//}
-//
-//void Room::SearchRoom(HANDLE hConsole) {
-//	
-//	string listCari[] = {
-//		"Cari Room Number",
-//		"Cari Harga",
-//	};
-//
-//	int length = sizeof(listCari) / sizeof(*listCari); //2
-//	int baris = 0;
-//	char arrow;
-//
-//	while (true){
-//		showMenuCari(listCari ,baris, length, hConsole, printLabel);
-//		arrow = _getch();
-//		if (arrow == 27) break;
-//
-//		if (arrow == 0 || arrow == -32) {
-//			switch (_getch()){
-//			
-//			case 72:
-//				baris = baris == 0 ? length - 1 : baris - 1;
-//				break;
-//
-//			case 80:
-//				baris = (baris + 1) % length;
-//				break;
-//
-//			}
-//		}
-//
-//		if (arrow == 13) {
-//			system("cls");
-//
-//			if (baris == 0) {
-//				int numberRoom;
-//				cout << "Masukkan Nombor Room : ";
-//				cin >> numberRoom;
-//				printTableFind("number", numberRoom, 0.0);
-//				//findByNumber();
-//			}
-//			else if (baris == 1) {
-//				//findByNumber();
-//				double priceRoom;
-//				cout << "Masukkan Harga Room : ";
-//				cin >> priceRoom;
-//				printTableFind("price", 0, priceRoom);
-//			}
-//
-//			cout << "Pess ESC to Back";
-//			_getch();
-//		}
-//
-//	}
-//
-//}
-
 #include <iostream>
 #include <iomanip>
 #include <windows.h>
 #include <conio.h>
 #include <string>
 #include <functional>
+#undef max
 
 using namespace std;
 #include "Room.h"
@@ -174,9 +43,9 @@ void Room::showMenuCari(string listCari[], int baris, int length) {
         }
     }
     removeBackgroundText();
-    cout << "\n----------------------------------------" << endl;
-    cout << "Guna Arrow Up/Down untuk pilih" << endl;
-    cout << "Tekan ENTER untuk Cari | ESC untuk Kembali" << endl;
+
+    printLabel( "Guna Arrow Up/Down untuk pilih",
+                "Esc untuk back");
 }
 
 // --- Logik Carian (Sequential & Binary) ---
@@ -243,7 +112,37 @@ void Room::printTableFind(string typeFind, int dataCarian, double hargaCarian) {
     }
 }
 
-// --- Fungsi Utama SearchRoom ---
+int Room::getRoomNumber() {
+    int roomNumber;
+    while (true){
+        cout << "Masukkan Nombor Room : ";
+        cin >> roomNumber;
+
+        if (!cin.fail() && roomNumber >= 0) {
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            return roomNumber;
+        }
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        cout << "Input tidak sah. Sila masukkan nombor >= 0.\n";
+    }
+}
+
+double Room::getRoomPrice() {
+    int roomPrice;
+    while (true) {
+        cout << "Masukkan Price Room : ";
+        cin >> roomPrice;
+        if (!cin.fail() && roomPrice >= 0) {
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            return roomPrice;
+        }
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        cout << "Input tidak sah. Sila masukkan nombor >= 0.\n";
+    }
+}
+
 void Room::SearchRoom() {
     string listCari[] = {
         "Cari Berdasarkan Nombor Bilik (Sequential Search)",
@@ -275,21 +174,17 @@ void Room::SearchRoom() {
             system("cls");
             if (baris == 0) {
                 int numberRoom;
-                cout << "Masukkan Nombor Room : ";
-                if (!(cin >> numberRoom)) {
-                    cin.clear();
-                    cin.ignore(1000, '\n');
-                }
+
+                numberRoom = getRoomNumber();
                 printTableFind("number", numberRoom, 0.0);
-            }
-            else if (baris == 1) {
+            
+            }else if (baris == 1) {
+            
                 double priceRoom;
-                cout << "Masukkan Harga Room : ";
-                if (!(cin >> priceRoom)) {
-                    cin.clear();
-                    cin.ignore(1000, '\n');
-                }
+                
+                priceRoom = getRoomPrice();
                 printTableFind("price", 0, priceRoom);
+            
             }
 
             cout << "\nTekan Esc untuk kembali...";
