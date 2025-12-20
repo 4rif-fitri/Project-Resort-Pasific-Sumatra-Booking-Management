@@ -136,4 +136,5 @@ void Room::DeleteRoom() {
 			cout << endl;
 		}
 	}
+	_getch();
 }

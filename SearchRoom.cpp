@@ -18,7 +18,7 @@ Room::Node* getMiddle(Room::Node* start, Room::Node* last) {
 void Room::showMenuCari(string listCari[], int baris, int length) {
     system("cls");
     printLabel("MENU CARIAN BILIK");
-
+    cout << "Cari Berdasarkan Harga menggunakan..." << endl;
     for (int i = 0; i < length; i++) {
         if (i == baris) {
             setBackgroundText();
@@ -50,7 +50,7 @@ void Room::sequentialSearch(double hargaCarian) {
         }
         curr = curr->link;
     }
-    if (!found) cout << "Ralat: Nombor bilik " << hargaCarian << " tidak ditemui." << endl;
+    if (!found) cout << "Bilik dengan harga RM" << hargaCarian << " tidak ditemui." << endl;
 }
 
 void Room::binarySearch(double hargaCarian) {
@@ -84,8 +84,8 @@ void Room::binarySearch(double hargaCarian) {
 
 void Room::SearchRoom() {
     string listCari[] = {
-        "Cari Berdasarkan Harga using Sequential Search",
-        "Cari Berdasarkan Harga using Binary Search"
+        "Sequential Search",
+        "Binary Search"
     };
 
     int length = 2;
