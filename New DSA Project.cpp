@@ -35,7 +35,7 @@ void main() {
 		"Add Room",
 		"Show Table Room",
 		"Sort Room By harga",
-		"Search Room By Room Number Or Price",
+		"Search Room By Price",
 		"Delete Room",
 		"Exit",
 	};

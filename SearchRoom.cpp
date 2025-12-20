@@ -37,14 +37,14 @@ void Room::showMenuCari(string listCari[], int baris, int length) {
                 "Esc untuk back");
 }
 
-void Room::sequentialSearch(int roomNumber) {
-    // SEQUENTIAL SEARCH:
+void Room::sequentialSearch(double hargaCarian) {
+    // SEQUENTIAL SEARCH
 
     Node* curr = pHead;
     bool found = false;
 
     while (curr != nullptr) {
-        if (curr->roomNumber == roomNumber) {
+        if (curr->price == hargaCarian) {
             cout << "JUMPA (Sequential):" << endl;
             cout << "No Bilik: " << curr->roomNumber << " | Nama: " << curr->name << " | Harga: RM" << curr->price << endl;
             found = true;
@@ -52,11 +52,11 @@ void Room::sequentialSearch(int roomNumber) {
         }
         curr = curr->link;
     }
-    if (!found) cout << "Ralat: Nombor bilik " << roomNumber << " tidak ditemui." << endl;
+    if (!found) cout << "Ralat: Nombor bilik " << hargaCarian << " tidak ditemui." << endl;
 }
 
 void Room::binarySearch(double hargaCarian) {
-    // BINARY SEARCH: Lebih laju untuk harga (Mesti Sorted)
+    // BINARY SEARCH
 
     Node* start = pHead;
     Node* last = nullptr;
@@ -97,8 +97,8 @@ void Room::binarySearch(double hargaCarian) {
 
 void Room::SearchRoom() {
     string listCari[] = {
-        "Cari Berdasarkan Nombor Bilik (Sequential Search)",
-        "Cari Berdasarkan Harga (Binary Search)"
+        "Cari Berdasarkan Harga using Sequential Search",
+        "Cari Berdasarkan Harga using Binary Search"
     };
 
     int length = 2;
@@ -126,22 +126,13 @@ void Room::SearchRoom() {
             system("cls");
             printLabel("HASIL CARIAN");
 
-            if (baris == 0) {
-                int numberRoom;
-
-                numberRoom = getIntt("Masukkan Price Room : ",
-                    "Input tidak sah. Sila masukkan nombor >= 0");
-                sequentialSearch(numberRoom);
-            
-            }else if (baris == 1) {
-            
-                double priceRoom;
+            double priceRoom;
                 
-                priceRoom = getDoublee("Masukkan Price Room : ",
-                    "Input tidak sah. Sila masukkan nombor >= 0");
-                binarySearch(priceRoom);
-            
-            }
+            priceRoom = getDoublee("Masukkan Price Room : ",
+                "Input tidak sah. Sila masukkan nombor >= 0");
+
+            if (baris == 0) sequentialSearch(priceRoom);
+            else if (baris == 1) binarySearch(priceRoom);
 
             cout << "\nTekan Esc untuk kembali...";
             _getch();

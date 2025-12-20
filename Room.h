@@ -89,7 +89,7 @@ public:
 	//Sort implementation
 
 	//Search implementation
-	void sequentialSearch(int roomNumber);
+	void sequentialSearch(double hargaCarian);
 	void binarySearch(double hargaCarian);
 	void showMenuCari(string listCari[], int baris, int length);
 	void SearchRoom();
