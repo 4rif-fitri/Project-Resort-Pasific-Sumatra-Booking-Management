@@ -1,15 +1,6 @@
 ﻿#include <iostream>
-#include <iomanip>
-#include <windows.h>
-#include <conio.h>
-#include <functional> 
-#include <string>
-#include <limits>
-
-#undef max
-
-using namespace std;
 #include "Room.h"
+using namespace std;
 
 void static printHome(string MenuList[], int Length, int Baris, Room room) {
 	system("cls");
