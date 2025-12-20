@@ -39,9 +39,8 @@ void Room::padam(
 	int& baris,
 	int& deletedRoomNumber,
 	int& indexToFind){
-	if (found) {
-		// 3. & 4. Mengubah Pautan dan Memadamkan Node
 
+	if (found) {
 		if (pPrev == nullptr) {
 			// KES 1: Memadamkan Head (Bilik pertama)
 			pHead = pCurr->link;
@@ -71,15 +70,9 @@ void Room::padam(
 		removeColorText();
 
 	}
-	else {
-		// Sesuatu tidak kena, logik tidak sepatutnya sampai di sini
-		setColorText();
-		cout << "\nRALAT: Gagal memadam pada kedudukan " << indexToFind + 1 << ".";
-		removeColorText();
-	}
 }
 
-void Room::cari(int& counter,int& indexToFind,bool& found,int& deletedRoomNumber, Node*& pPrev, Node*& pCurr) {
+void Room::cari(int& counter,int& indexToFind,bool& found, int& deletedRoomNumber, Node*& pPrev, Node*& pCurr) {
 	while (pCurr != nullptr) {
 		if (counter == indexToFind) {
 			// Node di kedudukan yang betul ditemui
@@ -101,7 +94,6 @@ void Room::DeleteRoom() {
 
 		//kalau link list kosong
 		if (pHead == nullptr) {
-			system("cls");
 			printLabel("Delete Room");
 			setBackgroundText();
 			cout << "\nSenarai Kosong.";

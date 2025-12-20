@@ -11,16 +11,16 @@ using namespace std;
 class Room {
 public:
 	class Node {
-	public:
-		string name;
-		int roomNumber;
-		double price;
-		string type;
-		string isaVailable;
-		string dateChackIn;
-		string dateChackOut;
-		string payment;
-		Node* link;
+		public:
+			string name;
+			int roomNumber;
+			double price;
+			string type;
+			string isaVailable;
+			string dateChackIn;
+			string dateChackOut;
+			string payment;
+			Node* link;
 	};
 
 	int totalRoom = 0;
@@ -73,7 +73,6 @@ public:
 
 	//Show implementation
 	void ShowRoom();
-	void printTableFind(string typeFind, int dataCarian, double hargaCarian);
 	void printTableDelete(int baris);
 	//Show implementation
 
