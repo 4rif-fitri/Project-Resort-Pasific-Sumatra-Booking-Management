@@ -70,6 +70,10 @@ public:
 	void setColorText(string warna);
 	void setBackgroundText(string warna);
 
+	bool sambung();
+
+	void optionType(int colum, string options[], int count_pilihan);
+	string getType(string optionss[], int count_pilihan);
 	// Utiliti
 
 	//Show implementation
@@ -78,9 +82,6 @@ public:
 	//Show implementation
 
 	//Add implementation
-	void optionType(int colum, string options[], int count_pilihan);
-	string getType();
-	bool sambung();
 	void displayDoneAdd();
 	void AddRoom();
 	//Add implementation

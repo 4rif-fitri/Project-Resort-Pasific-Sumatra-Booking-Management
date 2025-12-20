@@ -204,3 +204,71 @@ void Room::setColorText(string warna) {
 void Room::setBackgroundText(string warna) {
 	SetConsoleTextAttribute(hConsole, getBackCode(warna));
 }
+
+bool Room::sambung() {
+	char c;
+	cout << "Nak sambung? (y/n) : ";
+	cin >> ws >> c;
+
+	//clear buffer
+	cin.clear();
+	cin.ignore(numeric_limits<streamsize>::max(), '\n');
+	//clear buffer
+
+	if (c == 'y') {
+		return true;
+	}
+	else {
+		return false;
+	}
+
+}
+
+void Room::optionType(int colum, string options[], int count_pilihan) {
+
+	for (int i = 0; i < count_pilihan; ++i) {
+		if (i > 0) {
+			removeBackgroundText();
+			cout << " | ";
+		}
+
+		if (i == colum) setBackgroundText();
+		else removeBackgroundText();
+
+		cout << options[i];
+	}
+
+	removeBackgroundText();
+	cout << "\r"; // Kembalikan kursor ke awal baris
+}
+
+string Room::getType(string options[], int count_pilihan) {
+
+	string type;
+	char keybord;
+	int colum = 0;
+
+	while (true) {
+		cout << "Type of Room : ";
+		optionType(colum, options, count_pilihan);
+
+		keybord = _getch(); //when click keyboard
+
+		if (keybord == 0 || keybord == -32) {
+			switch (_getch()) { //click keyboard
+
+			case 75: // LEFT 
+				colum = (colum == 0) ? count_pilihan : colum - 1;
+				break;
+			case 77: // RIGHT
+				colum = (colum == count_pilihan) ? 0 : colum + 1;
+				break;
+			}
+
+		}
+
+		if (keybord == 13) break; //click enter
+	}
+	cout << endl;//!
+	return options[colum];
+}
