@@ -2,13 +2,13 @@
 using namespace std;
 #include "Room.h"
 
-// Fungsi pembantu untuk mendapatkan nod terakhir
+// Fungsi nod terakhir
 Room::Node* getTail(Room::Node* cur) {
     while (cur != nullptr && cur->link != nullptr) cur = cur->link;
     return cur;
 }
 
-// Fungsi pembahagi (Partition)
+// Fungsi (Partition)
 Room::Node* partition(Room::Node* head, Room::Node* end, Room::Node*& newHead, Room::Node*& newEnd) {
     Room::Node* pivot = end;
     Room::Node* prev = nullptr, * cur = head, * tail = pivot;
