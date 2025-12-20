@@ -2,6 +2,19 @@
 using namespace std;
 #include "Room.h"
 
+void Room::printData(Node* temps,char ver) {
+	cout << ver
+		<< setw(14) << temps->roomNumber << ver
+		<< setw(14) << temps->name << ver
+		<< setw(14) << temps->type << ver
+		<< setw(14) << temps->price << ver
+		<< setw(14) << temps->isaVailable << ver
+		<< setw(14) << temps->dateChackIn << ver
+		<< setw(14) << temps->dateChackOut << ver
+		<< setw(14) << temps->payment << ver
+	<< endl;
+}
+
 void Room::printTableDelete(int baris) {
 	system("cls");
 
@@ -19,45 +32,32 @@ void Room::printTableDelete(int baris) {
 	char ddd = 197;//┼
 
 	cout << tl;
-	for (int i = 0; i < 14; i++) cout << hor;
-	cout << tee_top;
-	for (int i = 0; i < 14; i++) cout << hor;
-	cout << tee_top;
-	for (int i = 0; i < 14; i++) cout << hor;
-	cout << tee_top;
-	for (int i = 0; i < 14; i++) cout << hor;
-	cout << tee_top;
-	for (int i = 0; i < 14; i++) cout << hor;
-	cout << tee_top;
-	for (int i = 0; i < 14; i++) cout << hor;
-	cout << tee_top;
+	for (int i = 0; i < 7; i++){
+		for (int i = 0; i < 14; i++) cout << hor;
+		cout << tee_top;
+	}
 	for (int i = 0; i < 14; i++) cout << hor;
 	cout << tr << endl;
 
 	cout << ver
-		<< setw(14) << "Number Room" << ver
-		<< setw(14) << "Name" << ver
-		<< setw(14) << "Type" << ver
-		<< setw(14) << "Price" << ver
-		<< setw(14) << "Vailable" << ver
-		<< setw(14) << "Date ChackIn" << ver
-		<< setw(14) << "Date ChackOut" << ver << endl;
+	<< setw(14) << "Number Room" << ver
+	<< setw(14) << "Name" << ver
+	<< setw(14) << "Type" << ver
+	<< setw(14) << "Price" << ver
+	<< setw(14) << "Vailable" << ver
+	<< setw(14) << "Date ChackIn" << ver
+	<< setw(14) << "Date ChackOut" << ver
+	<< setw(14) << "Payment" << ver
+	<< endl;
 
 	cout << th;
-	for (int i = 0; i < 14; i++) cout << hor;
-	cout << ddd;
-	for (int i = 0; i < 14; i++) cout << hor;
-	cout << ddd;
-	for (int i = 0; i < 14; i++) cout << hor;
-	cout << ddd;
-	for (int i = 0; i < 14; i++) cout << hor;
-	cout << ddd;
-	for (int i = 0; i < 14; i++) cout << hor;
-	cout << ddd;
-	for (int i = 0; i < 14; i++) cout << hor;
-	cout << ddd;
+	for (int i = 0; i < 7; i++){
+		for (int i = 0; i < 14; i++) cout << hor;
+		cout << ddd;
+	}
 	for (int i = 0; i < 14; i++) cout << hor;
 	cout << th_right << endl;
+
 	Node* temps = pHead;
 	int i = 1;
 
@@ -66,59 +66,93 @@ void Room::printTableDelete(int baris) {
 		bool selected = (i == baris + 1);
 
 		if (selected) {
-			SetConsoleTextAttribute(hConsole, 46);
-			cout << ver
-				<< setw(14) << temps->roomNumber << ver
-				<< setw(14) << temps->name << ver
-				<< setw(14) << temps->type << ver
-				<< setw(14) << temps->price << ver
-				<< setw(14) << temps->isaVailable << ver
-				<< setw(14) << temps->dateChackIn << ver
-				<< setw(14) << temps->dateChackOut << ver << endl;
+			setBackgroundText();
+			printData(temps, ver);
 		}
 		else {
-			SetConsoleTextAttribute(hConsole, 7);
-			cout << ver
-				<< setw(14) << temps->roomNumber << ver
-				<< setw(14) << temps->name << ver
-				<< setw(14) << temps->type << ver
-				<< setw(14) << temps->price << ver
-				<< setw(14) << temps->isaVailable << ver
-				<< setw(14) << temps->dateChackIn << ver
-				<< setw(14) << temps->dateChackOut << ver << endl;
+			removeBackgroundText();
+			printData(temps,ver);
 		}
-
-
 
 		temps = temps->link;
 		i++;
 	}
-	SetConsoleTextAttribute(hConsole, 7);
+	removeBackgroundText();
+
 
 	cout << bl;
-	for (int i = 0; i < 14; i++) cout << hor;
-	cout << aaa;
-	for (int i = 0; i < 14; i++) cout << hor;
-	cout << aaa;
-	for (int i = 0; i < 14; i++) cout << hor;
-	cout << aaa;
-	for (int i = 0; i < 14; i++) cout << hor;
-	cout << aaa;
-	for (int i = 0; i < 14; i++) cout << hor;
-	cout << aaa;
-	for (int i = 0; i < 14; i++) cout << hor;
-	cout << aaa;
+	for (int i = 0; i < 7; i++){
+		for (int i = 0; i < 14; i++) cout << hor;
+		cout << aaa;
+	}
 	for (int i = 0; i < 14; i++) cout << hor;
 	cout << sss << endl;
 
-	cout << "\nTekan ESC dua kali untuk back";
+	cout << "\nTekan Esc dua kali untuk back";
 }
 
-void Room::cariDanPadam() {
+void Room::padam(bool& found,
+	Node*& pHead,
+	Node*& pPrev,
+	Node*& pCurr,
+	int& baris,
+	int& deletedRoomNumber,
+	int& indexToFind){
+	if (found) {
+		// 3. & 4. Mengubah Pautan dan Memadamkan Node
 
+		if (pPrev == nullptr) {
+			// KES 1: Memadamkan Head (Bilik pertama)
+			pHead = pCurr->link;
+		}
+		else {
+			// KES 2: Memadamkan Node di tengah atau di hujung
+			pPrev->link = pCurr->link;
+		}
+
+		delete pCurr; // Membebaskan memori
+		totalRoom--; // 5. Mengemas kini totalRoom
+
+		// Kemas kini baris selepas pemadaman
+		if (totalRoom > 0) {
+			// Jika item terakhir dipadam, baris bergerak ke item sebelumnya
+			if (baris >= totalRoom) {
+				baris = totalRoom - 1;
+			}
+		}
+		else {
+			baris = 0; // Jika senarai kosong, baris reset ke 0
+		}
+		ShowAll();
+
+		setColorText();
+		cout << "\nBilik Nombor " << deletedRoomNumber << " berjaya dipadamkan!";
+		removeColorText();
+
+	}
+	else {
+		// Sesuatu tidak kena, logik tidak sepatutnya sampai di sini
+		setColorText();
+		cout << "\nRALAT: Gagal memadam pada kedudukan " << indexToFind + 1 << ".";
+		removeColorText();
+	}
 }
 
-void Room::DeleteRoom(HANDLE hConsole) {
+void Room::cari(int& counter,int& indexToFind,bool& found,int& deletedRoomNumber, Node*& pPrev, Node*& pCurr) {
+	while (pCurr != nullptr) {
+		if (counter == indexToFind) {
+			// Node di kedudukan yang betul ditemui
+			found = true;
+			deletedRoomNumber = pCurr->roomNumber;
+			break;
+		}
+		pPrev = pCurr;
+		pCurr = pCurr->link;
+		counter++;
+	}
+}
+
+void Room::DeleteRoom() {
 	char choice = -1;
 	int baris = 0;
 
@@ -169,57 +203,8 @@ void Room::DeleteRoom(HANDLE hConsole) {
 			int counter = 0;
 			bool found = false;
 
-			while (pCurr != nullptr) {
-				if (counter == indexToFind) {
-					// Node di kedudukan yang betul ditemui
-					found = true;
-					deletedRoomNumber = pCurr->roomNumber;
-					break;
-				}
-				pPrev = pCurr;
-				pCurr = pCurr->link;
-				counter++;
-			}
-
-			if (found) {
-				// 3. & 4. Mengubah Pautan dan Memadamkan Node
-
-				if (pPrev == nullptr) {
-					// KES 1: Memadamkan Head (Bilik pertama)
-					pHead = pCurr->link;
-				}
-				else {
-					// KES 2: Memadamkan Node di tengah atau di hujung
-					pPrev->link = pCurr->link;
-				}
-
-				delete pCurr; // Membebaskan memori
-				totalRoom--; // 5. Mengemas kini totalRoom
-
-				// Kemas kini baris selepas pemadaman
-				if (totalRoom > 0) {
-					// Jika item terakhir dipadam, baris bergerak ke item sebelumnya
-					if (baris >= totalRoom) {
-						baris = totalRoom - 1;
-					}
-				}
-				else {
-					baris = 0; // Jika senarai kosong, baris reset ke 0
-				}
-				printTableDelete(baris);
-
-				SetConsoleTextAttribute(hConsole, 10);
-				cout << "\nBilik Nombor " << deletedRoomNumber << " berjaya dipadamkan!";
-				SetConsoleTextAttribute(hConsole, 7);
-
-			}
-			else {
-				// Sesuatu tidak kena, logik tidak sepatutnya sampai di sini
-				SetConsoleTextAttribute(hConsole, 12);
-				cout << "\nRALAT: Gagal memadam pada kedudukan " << indexToFind + 1 << ".";
-				SetConsoleTextAttribute(hConsole, 7);
-			}
-
+			cari(counter, indexToFind, found, deletedRoomNumber, pPrev, pCurr);
+			padam(found, pHead, pPrev, pCurr, baris, deletedRoomNumber, indexToFind);
 			_getch();
 		}
 	}

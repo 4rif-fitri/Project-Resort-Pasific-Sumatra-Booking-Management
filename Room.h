@@ -2,7 +2,7 @@
 #include <iomanip>
 #include <windows.h>
 #include <conio.h>
-#include <functional> // Include this header for std::function
+#include <functional>
 
 using namespace std;
 class Room {
@@ -19,6 +19,7 @@ public:
 		string payment;
 		Node* link;
 	};
+
 	int totalRoom = 0;
 	Node* pHead = nullptr;
 	Node* pCurr;
@@ -27,13 +28,13 @@ public:
 	Room() {};
 	~Room() {};
 
-	//Show
+	//Show implementation
 	void ShowRoom();
 	void printTableFind(string typeFind, int dataCarian, double hargaCarian);
 	void printTableDelete(int baris);
-	//Show
+	//Show implementation
 
-	//Add
+	//Add implementation
 	void optionType(int bar);
 	string setName();
 	string setType();
@@ -41,6 +42,8 @@ public:
 	bool sambung();
 	void displayDoneAdd();
 	void AddRoom(HANDLE hConsole);
+
+	//remove
 	void InsertDefaultNode(const string& name, double price, const string& type,const string& available = "Yes",const string& checkIn = " - ",const string& checkOut = " - ",const string& paymentStatus = " - ") {
 
 		Node* pNew = new Node();
@@ -72,20 +75,41 @@ public:
 			temp->link = pNew;
 		}
 	}
-	//Add
+	//remove
+	
+	//Add implementation
 
-	//Sort
+	//Sort implementation
 	void SortRoom(HANDLE hConsole);
-	//Sort
+	//Sort implementation
 
-	//Search
+	//Search implementation
 	void SearchRoom(HANDLE hConsole);
-	//Search
+	//Search implementation
 
-	//Delete
-	void cariDanPadam();
-	void DeleteRoom(HANDLE hConsole);
-	//Delete
+	//Delete implementation
+	void printData(Node* temps,char ver);
+	void padam(
+		bool& found,
+		Node*& pHead,
+		Node*& pPrev,
+		Node*& pCurr,
+		int& baris,
+		int& deletedRoomNumber,
+		int& indexToFind
+	);
+
+	void cari(
+		int& counter, 
+		int& indexToFind, 
+		bool& found, 
+		int& deletedRoomNumber, 
+		Node*& pPrev, 
+		Node*& pCurr
+	);
+
+	void DeleteRoom();
+	//Delete implementation
 
 
 	void setColorText() {

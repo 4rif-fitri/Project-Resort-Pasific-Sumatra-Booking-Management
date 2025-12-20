@@ -292,7 +292,8 @@ void Room::SearchRoom(HANDLE hConsole) {
                 printTableFind("price", 0, priceRoom);
             }
 
-            cout << "\nTekan mana-mana kekunci untuk kembali...";
+            cout << "\nTekan Esc untuk kembali...";
+            _getch();
         }
     }
 }

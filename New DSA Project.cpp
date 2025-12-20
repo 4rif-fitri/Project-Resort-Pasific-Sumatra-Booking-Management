@@ -5,7 +5,7 @@
 using namespace std;
 #include "Room.h"
 //master
-void  printLabel(string text) {
+void static printLabel(string text) {
 	char tl = 218; // ┌
 	char tr = 191; // ┐
 	char bl = 192; // └
@@ -101,7 +101,7 @@ void main() {
 			else if (baris == 1) room.ShowRoom();
 			else if (baris == 2) room.SortRoom(hConsole);
 			else if (baris == 3) room.SearchRoom(hConsole);
-			else if (baris == 4) room.DeleteRoom(hConsole);
+			else if (baris == 4) room.DeleteRoom();
 			else if (baris == 5) break;
 
 			_getch();
