@@ -41,6 +41,7 @@ public:
 	Room() {};
 	~Room() {};
 
+	//Utiliti
 	void printLabel(string text) {
 		cout << tl;
 		for (int i = 0; i < 30; i++) cout << hor;
@@ -53,25 +54,14 @@ public:
 		cout << br << endl << endl;
 	}
 
-	void ShowAll() {
-		Node* temps = pHead;
-		int i = 1;
-
+	void printHeaderTable() {
 		cout << tl;
-		for (int i = 0; i < 14; i++) cout << hor;
-		cout << tee_top;
-		for (int i = 0; i < 14; i++) cout << hor;
-		cout << tee_top;
-		for (int i = 0; i < 14; i++) cout << hor;
-		cout << tee_top;
-		for (int i = 0; i < 14; i++) cout << hor;
-		cout << tee_top;
-		for (int i = 0; i < 14; i++) cout << hor;
-		cout << tee_top;
-		for (int i = 0; i < 14; i++) cout << hor;
-		cout << tee_top;
-		for (int i = 0; i < 14; i++) cout << hor;
-		cout << tee_top;
+
+		for (int i = 0; i < 7; i++){
+			for (int i = 0; i < 14; i++) cout << hor;
+			cout << tee_top;
+		}
+
 		for (int i = 0; i < 14; i++) cout << hor;
 		cout << tr << endl;
 
@@ -83,70 +73,66 @@ public:
 			<< setw(14) << "Available" << ver
 			<< setw(14) << "Date ChackIn" << ver
 			<< setw(14) << "Date ChackIn" << ver
-			<< setw(14) << "Peyment" << ver << endl;
+			<< setw(14) << "Peyment" << ver
+		<< endl;
 
 		cout << th;
-		for (int i = 0; i < 14; i++) cout << hor;
-		cout << ddd;
-		for (int i = 0; i < 14; i++) cout << hor;
-		cout << ddd;
-		for (int i = 0; i < 14; i++) cout << hor;
-		cout << ddd;
-		for (int i = 0; i < 14; i++) cout << hor;
-		cout << ddd;
-		for (int i = 0; i < 14; i++) cout << hor;
-		cout << ddd;
-		for (int i = 0; i < 14; i++) cout << hor;
-		cout << ddd;
-		for (int i = 0; i < 14; i++) cout << hor;
-		cout << ddd;
+
+		for (int i = 0; i < 7; i++) {
+			for (int i = 0; i < 14; i++) cout << hor;
+			cout << ddd;
+		}
+
 		for (int i = 0; i < 14; i++) cout << hor;
 		cout << th_right << endl;
+	}
+	
+	void printBodyTable(Node* temps) {
+		cout << ver
+			<< setw(14) << temps->roomNumber << ver
+			<< setw(14) << temps->name << ver
+			<< setw(14) << temps->type << ver
+			<< setw(14) << temps->price << ver
+			<< setw(14) << temps->isaVailable << ver
+			<< setw(14) << temps->dateChackIn << ver
+			<< setw(14) << temps->dateChackOut << ver
+			<< setw(14) << temps->payment << ver
+			<< endl;
+	}
+
+	void printFooterTable() {
+		cout << bl;
+		for (int i = 0; i < 7; i++){
+			for (int i = 0; i < 14; i++) cout << hor;
+			cout << aaa;
+		}
+		for (int i = 0; i < 14; i++) cout << hor;
+		cout << sss << endl;
+	}
+
+	void ShowAll() {
+		Node* temps = pHead;
+		int i = 1;
+
+		printHeaderTable();
 
 		if (totalRoom == 0) {
 			cout << ver << setw(120) << ver << endl;
 			cout << ver << setw(14 * 4) << "No Data Yet" << setw(64) << ver << endl;
 			cout << ver << setw(120) << ver << endl;
-
 		}
 		else {
 			while (temps != nullptr) {
-				cout << ver
-					<< setw(14) << temps->roomNumber << ver
-					<< setw(14) << temps->name << ver
-					<< setw(14) << temps->type << ver
-					<< setw(14) << temps->price << ver
-					<< setw(14) << temps->isaVailable << ver
-					<< setw(14) << temps->dateChackIn << ver
-					<< setw(14) << temps->dateChackOut << ver
-					<< setw(14) << temps->payment << ver
-					<< endl;
-
+				printBodyTable(temps);
 				temps = temps->link;
 				i++;
 			}
 
 		}
+		printFooterTable();
 
-		cout << bl;
-		for (int i = 0; i < 14; i++) cout << hor;
-		cout << aaa;
-		for (int i = 0; i < 14; i++) cout << hor;
-		cout << aaa;
-		for (int i = 0; i < 14; i++) cout << hor;
-		cout << aaa;
-		for (int i = 0; i < 14; i++) cout << hor;
-		cout << aaa;
-		for (int i = 0; i < 14; i++) cout << hor;
-		cout << aaa;
-		for (int i = 0; i < 14; i++) cout << hor;
-		cout << aaa;
-		for (int i = 0; i < 14; i++) cout << hor;
-		cout << aaa;
-		for (int i = 0; i < 14; i++) cout << hor;
-		cout << sss << endl;
 	}
-
+	//Utiliti
 
 	//Show implementation
 	void ShowRoom();
