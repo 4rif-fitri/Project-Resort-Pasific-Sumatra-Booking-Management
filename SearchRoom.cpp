@@ -1,6 +1,5 @@
 #include "Room.h"
 
-// Mencari titik tengah dalam Linked List
 Room::Node* getMiddle(Room::Node* start, Room::Node* last) {
     if (start == nullptr) return nullptr;
     Room::Node* slow = start;
@@ -16,7 +15,6 @@ Room::Node* getMiddle(Room::Node* start, Room::Node* last) {
     return slow;
 }
 
-// --- Paparan Menu Carian ---
 void Room::showMenuCari(string listCari[], int baris, int length) {
     system("cls");
     printLabel("MENU CARIAN BILIK");
@@ -57,6 +55,7 @@ void Room::sequentialSearch(double hargaCarian) {
 
 void Room::binarySearch(double hargaCarian) {
     // BINARY SEARCH
+    quickSort(); //sort dulu
 
     Node* start = pHead;
     Node* last = nullptr;
@@ -69,7 +68,6 @@ void Room::binarySearch(double hargaCarian) {
         if (mid->price == hargaCarian) {
             cout << "JUMPA (Binary):" << endl;
             cout << "No Bilik: " << mid->roomNumber << " | Nama: " << mid->name << " | Harga: RM" << mid->price << endl;
-            found = true;
             break;
         }
         else if (mid->price < hargaCarian) {
@@ -80,19 +78,7 @@ void Room::binarySearch(double hargaCarian) {
         }
     }
 
-    // Fallback: Jika Binary tak jumpa (mungkin list belum sorted), guna Sequential
-    if (!found) {
-        Node* curr = pHead;
-        while (curr != nullptr) {
-            if (curr->price == hargaCarian) {
-                cout << "JUMPA (Sequential):" << endl;
-                cout << "No Bilik: " << curr->roomNumber << " | Nama: " << curr->name << " | Harga: RM" << curr->price << endl;
-                found = true;
-            }
-            curr = curr->link;
-        }
-    }
-    if (!found) cout << "Ralat: Bilik dengan harga RM" << hargaCarian << " tidak ditemui." << endl;
+    if (!found) cout << "Bilik dengan harga RM" << hargaCarian << " tidak ditemui." << endl;
 }
 
 void Room::SearchRoom() {

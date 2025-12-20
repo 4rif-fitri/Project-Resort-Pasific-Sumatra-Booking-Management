@@ -1,15 +1,17 @@
 #include "Room.h"
 
 void Room::getTail(Node* cur, Node*& tail) {
-    if (cur == nullptr) { // if kosong
+    if (cur == nullptr) {
         tail = nullptr;
         return;
     }
-    while (cur->link != nullptr) cur = cur->link;
+    while (cur->link != nullptr) {
+        cur = cur->link;
+    }
     tail = cur;
 }
 
-void Room::partition(Node* head, Node* end, Node*& newHead, Node*& newEnd, Node*& pivotOut) {
+void Room::partition(Node* head, Node* end, Node*& newHead, Node*& newEnd, Node*& pivotOut){
     Node* pivot = end;
     Node* prev = nullptr, * cur = head, * tail = pivot;
 
@@ -33,7 +35,7 @@ void Room::partition(Node* head, Node* end, Node*& newHead, Node*& newEnd, Node*
 
     if (newHead == nullptr) newHead = pivot;
     newEnd = tail;
-    pivotOut = pivot; // Hantar alamat pivot keluar melalui reference
+    pivotOut = pivot;
 }
 
 void Room::quickSortRecursive(Node*& headRef, Node* end) {
@@ -63,11 +65,14 @@ void Room::quickSortRecursive(Node*& headRef, Node* end) {
 
     // Susun bahagian kanan
     quickSortRecursive(pivot->link, newEnd);
-
     // Update head asal dengan head baru yang sudah disusun
     headRef = newHead;
 }
-
+void Room::quickSort() {
+    Node* tail = nullptr;
+    getTail(pHead, tail);
+    quickSortRecursive(pHead, tail);
+}
 void Room::SortRoom() {
     system("cls");
     printLabel("Sort Room by Price using quickSort");
@@ -76,10 +81,7 @@ void Room::SortRoom() {
         cout << "Bilik tidak mencukupi untuk disusun." << endl;
     }
     else {
-        Node* tail = nullptr;
-        getTail(pHead, tail);
-        quickSortRecursive(pHead, tail);
-
+        quickSort();
         cout << "Bilik berjaya disusun (Quick Sort)!" << endl;
     }
     ShowAll();

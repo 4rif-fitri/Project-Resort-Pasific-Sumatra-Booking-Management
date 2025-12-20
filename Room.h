@@ -94,6 +94,7 @@ public:
 		Node*& pivotOut
 	);
 	void quickSortRecursive(Node*& headRef, Node* end);
+	void quickSort();
 	void SortRoom();
 	//Sort implementation
 
