@@ -25,121 +25,23 @@ public:
 	Node* pCurr;
 	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 
+	char tl = 218; // ┌  
+	char tr = 191; // ┐  
+	char bl = 192; // └  
+	char br = 217; // ┘  
+	char hor = 196; // ─  
+	char ver = 179; // │  
+	char th = 195;  // ├  
+	char th_right = 180; // ┤  
+	char tee_top = 194;//┬
+	char aaa = 193;//└
+	char sss = 217; //┘
+	char ddd = 197;//┼
+
 	Room() {};
 	~Room() {};
 
-	//Show implementation
-	void ShowRoom();
-	void printTableFind(string typeFind, int dataCarian, double hargaCarian);
-	void printTableDelete(int baris);
-	//Show implementation
-
-	//Add implementation
-	void optionType(int bar);
-	string setName();
-	string setType();
-	double setPrice();
-	bool sambung();
-	void displayDoneAdd();
-	void AddRoom(HANDLE hConsole);
-
-	//remove
-	void InsertDefaultNode(const string& name, double price, const string& type,const string& available = "Yes",const string& checkIn = " - ",const string& checkOut = " - ",const string& paymentStatus = " - ") {
-
-		Node* pNew = new Node();
-
-		totalRoom++;
-
-		pNew->roomNumber = totalRoom;
-		pNew->name = name;
-		pNew->price = price;
-		pNew->type = type;
-
-		// Guna parameter yang baru dimasukkan
-		pNew->isaVailable = available;
-		pNew->dateChackIn = checkIn;
-		pNew->dateChackOut = checkOut;
-		pNew->payment = paymentStatus;
-
-		pNew->link = nullptr;
-
-		// Logik Linked List (sama seperti sebelum ini)
-		if (pHead == nullptr) {
-			pHead = pNew;
-		}
-		else {
-			Node* temp = pHead;
-			while (temp->link != nullptr) {
-				temp = temp->link;
-			}
-			temp->link = pNew;
-		}
-	}
-	//remove
-	
-	//Add implementation
-
-	//Sort implementation
-	void SortRoom(HANDLE hConsole);
-	//Sort implementation
-
-	//Search implementation
-	void SearchRoom(HANDLE hConsole);
-	//Search implementation
-
-	//Delete implementation
-	void printData(Node* temps,char ver);
-	void padam(
-		bool& found,
-		Node*& pHead,
-		Node*& pPrev,
-		Node*& pCurr,
-		int& baris,
-		int& deletedRoomNumber,
-		int& indexToFind
-	);
-
-	void cari(
-		int& counter, 
-		int& indexToFind, 
-		bool& found, 
-		int& deletedRoomNumber, 
-		Node*& pPrev, 
-		Node*& pCurr
-	);
-
-	void DeleteRoom();
-	//Delete implementation
-
-
-	void setColorText() {
-		SetConsoleTextAttribute(hConsole, 10);
-	}
-	void removeColorText() {
-		SetConsoleTextAttribute(hConsole, 7);
-	}
-
-	void setBackgroundText() {
-		SetConsoleTextAttribute(hConsole, 0x1F);
-	}
-	void removeBackgroundText() {
-		SetConsoleTextAttribute(hConsole, 7);
-	}
-
-
-
-
-
-	void static printLabel(string text) {
-		char tl = 218; // ┌  
-		char tr = 191; // ┐  
-		char bl = 192; // └  
-		char br = 217; // ┘  
-		char hor = 196; // ─  
-		char ver = 179; // │  
-		char th = 195;  // ├  
-		char th_right = 180; // ┤  
-
+	void printLabel(string text) {
 		cout << tl;
 		for (int i = 0; i < 30; i++) cout << hor;
 		cout << tr << endl;
@@ -154,18 +56,6 @@ public:
 	void ShowAll() {
 		Node* temps = pHead;
 		int i = 1;
-		char tl = 218; // ┌  
-		char tr = 191; // ┐  
-		char bl = 192; // └  
-		char br = 217; // ┘  
-		char hor = 196; // ─  
-		char ver = 179; // │  
-		char th = 195;  // ├  
-		char th_right = 180; // ┤  
-		char tee_top = 194;//┬
-		char aaa = 193;//└
-		char sss = 217; //┘
-		char ddd = 197;//┼
 
 		cout << tl;
 		for (int i = 0; i < 14; i++) cout << hor;
@@ -256,5 +146,110 @@ public:
 		for (int i = 0; i < 14; i++) cout << hor;
 		cout << sss << endl;
 	}
+
+
+	//Show implementation
+	void ShowRoom();
+	void printTableFind(string typeFind, int dataCarian, double hargaCarian);
+	void printTableDelete(int baris);
+	//Show implementation
+
+	//Add implementation
+	void optionType(int bar);
+	string setName();
+	string setType();
+	double setPrice();
+	bool sambung();
+	void displayDoneAdd();
+	void AddRoom(HANDLE hConsole);
+
+	//remove
+	void InsertDefaultNode(const string& name, double price, const string& type,const string& available = "Yes",const string& checkIn = " - ",const string& checkOut = " - ",const string& paymentStatus = " - ") {
+
+		Node* pNew = new Node();
+
+		totalRoom++;
+
+		pNew->roomNumber = totalRoom;
+		pNew->name = name;
+		pNew->price = price;
+		pNew->type = type;
+
+		// Guna parameter yang baru dimasukkan
+		pNew->isaVailable = available;
+		pNew->dateChackIn = checkIn;
+		pNew->dateChackOut = checkOut;
+		pNew->payment = paymentStatus;
+
+		pNew->link = nullptr;
+
+		// Logik Linked List (sama seperti sebelum ini)
+		if (pHead == nullptr) {
+			pHead = pNew;
+		}
+		else {
+			Node* temp = pHead;
+			while (temp->link != nullptr) {
+				temp = temp->link;
+			}
+			temp->link = pNew;
+		}
+	}
+	//remove
+	
+	//Add implementation
+
+	//Sort implementation
+	void SortRoom(HANDLE hConsole);
+	//Sort implementation
+
+	//Search implementation
+	void showMenuCari(string listCari[], int baris, int length);
+	void SearchRoom(HANDLE hConsole);
+	//Search implementation
+
+	//Delete implementation
+	void printData(Node* temps,char ver);
+	void padam(
+		bool& found,
+		Node*& pHead,
+		Node*& pPrev,
+		Node*& pCurr,
+		int& baris,
+		int& deletedRoomNumber,
+		int& indexToFind
+	);
+
+	void cari(
+		int& counter, 
+		int& indexToFind, 
+		bool& found, 
+		int& deletedRoomNumber, 
+		Node*& pPrev, 
+		Node*& pCurr
+	);
+
+	void DeleteRoom();
+	//Delete implementation
+
+
+	void setColorText() {
+		SetConsoleTextAttribute(hConsole, 10);
+	}
+	void removeColorText() {
+		SetConsoleTextAttribute(hConsole, 7);
+	}
+
+	void setBackgroundText() {
+		SetConsoleTextAttribute(hConsole, 0x1F);
+	}
+	void removeBackgroundText() {
+		SetConsoleTextAttribute(hConsole, 7);
+	}
+
+
+
+
+
 
 };

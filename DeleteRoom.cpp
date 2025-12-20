@@ -18,19 +18,6 @@ void Room::printData(Node* temps,char ver) {
 void Room::printTableDelete(int baris) {
 	system("cls");
 
-	char tl = 218; // ┌  
-	char tr = 191; // ┐  
-	char bl = 192; // └  
-	char br = 217; // ┘  
-	char hor = 196; // ─  
-	char ver = 179; // │  
-	char th = 195;  // ├  
-	char th_right = 180; // ┤  
-	char tee_top = 194;//┬
-	char aaa = 193;//└
-	char sss = 217; //┘
-	char ddd = 197;//┼
-
 	cout << tl;
 	for (int i = 0; i < 7; i++){
 		for (int i = 0; i < 14; i++) cout << hor;
@@ -91,7 +78,8 @@ void Room::printTableDelete(int baris) {
 	cout << "\nTekan Esc dua kali untuk back";
 }
 
-void Room::padam(bool& found,
+void Room::padam(
+	bool& found,
 	Node*& pHead,
 	Node*& pPrev,
 	Node*& pCurr,

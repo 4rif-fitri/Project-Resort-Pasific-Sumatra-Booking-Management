@@ -159,21 +159,21 @@ Room::Node* getMiddle(Room::Node* start, Room::Node* last) {
 }
 
 // --- Paparan Menu Carian ---
-void showMenuCari(string listCari[], int baris, int length, HANDLE hConsole, function<void(string)> printLabel) {
+void Room::showMenuCari(string listCari[], int baris, int length) {
     system("cls");
     printLabel("MENU CARIAN BILIK");
 
     for (int i = 0; i < length; i++) {
         if (i == baris) {
-            SetConsoleTextAttribute(hConsole, 240); // Warna highlight (latar putih, tulisan hitam)
+            setBackgroundText();
             cout << "> " << listCari[i] << endl;
         }
         else {
-            SetConsoleTextAttribute(hConsole, 7); // Warna asal
+            removeBackgroundText();
             cout << "  " << listCari[i] << endl;
         }
     }
-    SetConsoleTextAttribute(hConsole, 7);
+    removeBackgroundText();
     cout << "\n----------------------------------------" << endl;
     cout << "Guna Arrow Up/Down untuk pilih" << endl;
     cout << "Tekan ENTER untuk Cari | ESC untuk Kembali" << endl;
@@ -255,7 +255,7 @@ void Room::SearchRoom(HANDLE hConsole) {
     char arrow;
 
     while (true) {
-        showMenuCari(listCari, baris, length, hConsole, printLabel);
+        showMenuCari(listCari, baris, length);
         arrow = _getch();
 
         if (arrow == 27) break; // ESC untuk keluar
