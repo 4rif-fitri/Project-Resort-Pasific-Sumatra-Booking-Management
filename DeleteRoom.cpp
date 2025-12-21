@@ -31,17 +31,12 @@ void Room::printTableDelete(int baris) {
 	printLabel("Select guna arrow Up/Down and Enter untuk padam", "Pess ESC to back");
 }
 
-void Room::padam(
+void Room::padamLink(
 	bool found,
 	Node* &pHead,
 	Node* &pPrev,
-	Node* &pCurr,
-	int baris,
-	int deletedRoomNumber,
-	int indexToFind
+	Node* &pCurr
 ){
-	printLabel("Done Delete Room");
-
 	if (found) {
 		if (pPrev == nullptr) {
 			// padam Head (Bilik pertama)
@@ -54,10 +49,6 @@ void Room::padam(
 
 		delete pCurr; 
 		totalRoom--; 
-
-		ShowAll();
-
-		printLabel("Pess ESC to back");
 	}
 }
 
@@ -89,8 +80,21 @@ void Room::padam(int& baris) {
 	int counter = 0;
 	bool found = false;
 
-	cari(counter, indexToFind, found, deletedRoomNumber, pPrev, pCurr);
-	padam(found, pHead, pPrev, pCurr, baris, deletedRoomNumber, indexToFind);
+	cari(
+		counter
+		, indexToFind
+		, found
+		, deletedRoomNumber
+		, pPrev
+		, pCurr
+	);
+	
+	padamLink(
+		found, 
+		pHead, 
+		pPrev, 
+		pCurr
+	);
 	cout << endl;
 }
 
@@ -102,6 +106,7 @@ void Room::DeleteRoom() {
 	if (pHead == nullptr) {
 		printLabel("Delete Room");
 		printTableDelete(baris);
+		_getch();
 		return;
 	}
 

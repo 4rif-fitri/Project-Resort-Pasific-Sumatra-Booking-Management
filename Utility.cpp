@@ -205,7 +205,8 @@ int Room::getBackCode(string text) {
 	else if (text == "kuning") code = BACKGROUND_RED | BACKGROUND_GREEN;
 	else if (text == "hitam") code = 0;
 	else if (text == "putih") code = BACKGROUND_RED | BACKGROUND_GREEN | BACKGROUND_BLUE;
-
+	else if (text == "hijau")
+		code = BACKGROUND_GREEN;
 	return code;
 }
 
@@ -219,7 +220,7 @@ void Room::setBackgroundText(string warna) {
 
 bool Room::sambung() {
 	char c;
-	cout << "Nak sambung? (y/n) : ";
+	cout << "Nak Teruskan Add Room? (y/n) : ";
 	cin >> ws >> c;
 
 	//clear buffer

@@ -6,6 +6,7 @@
 #include <string>
 #include <limits>
 #undef max
+
 using namespace std;
 
 class Room {
@@ -93,13 +94,6 @@ public:
 		return "";
 	}
 
-
-
-
-
-
-
-
 	// Utiliti ================
 
 	//Show implementation ================
@@ -134,14 +128,11 @@ public:
 	//Search implementation ================
 
 	//Delete implementation ================
-	void padam(
+	void padamLink(
 		bool found,
 		Node* &pHead,
 		Node* &pPrev,
-		Node* &pCurr,
-		int baris,
-		int deletedRoomNumber,
-		int indexToFind
+		Node* &pCurr
 	);
 
 	void cari(

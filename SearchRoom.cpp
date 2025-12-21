@@ -102,7 +102,7 @@ void Room::SearchRoom() {
 
         if (action == "enter") { // enter
             system("cls");
-            printLabel("HASIL CARIAN");
+            printLabel("Search Price Room");
                 
             priceRoom = getDoublee("Masukkan Price Room : ",
                 "Input tidak sah. Sila masukkan nombor >= 0");
@@ -110,7 +110,7 @@ void Room::SearchRoom() {
             if (baris == 0) sequentialSearch(priceRoom);
             else if (baris == 1) binarySearch(priceRoom);
 
-            cout << "\nTekan Esc untuk kembali...";
+            printLabel("Pess ESC to back");
             _getch();
         }
     }

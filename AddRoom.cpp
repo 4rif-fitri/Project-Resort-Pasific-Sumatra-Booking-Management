@@ -3,7 +3,7 @@
 void Room::displayDoneAdd() {
 	system("cls");
 	printLabel("Done Add Room...");
-	removeColorText();
+	ShowAll();
 }
 
 void Room::AddRoom() {
@@ -53,7 +53,6 @@ void Room::AddRoom() {
 		}
 
 		displayDoneAdd();
-		ShowAll();
 
 		if (!sambung()) break;
 	}
