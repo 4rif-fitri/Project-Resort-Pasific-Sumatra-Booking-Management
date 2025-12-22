@@ -58,7 +58,7 @@ void Room::printHeaderTable() {
 		<< setw(14) << "Price" << ver
 		<< setw(14) << "Available" << ver
 		<< setw(14) << "Date ChackIn" << ver
-		<< setw(14) << "Date ChackIn" << ver
+		<< setw(14) << "Date ChackOut" << ver
 		<< setw(14) << "Peyment" << ver
 		<< endl;
 
@@ -284,4 +284,35 @@ string Room::getType(string options[], int count_pilihan) {
 	}
 	cout << endl;//!
 	return options[colum];
+}
+
+void Room::ShowTableSelect(int baris) {
+	system("cls");
+	printLabel("Padam Table");
+
+	printHeaderTable();
+
+	Node* temps = pHead;
+	int i = 1;
+
+	while (temps != nullptr) {
+
+		bool selected = (i == baris + 1);
+
+		if (selected) {
+			setBackgroundText();
+			printBodyTable(temps);
+		}
+		else {
+			removeBackgroundText();
+			printBodyTable(temps);
+		}
+
+		temps = temps->link;
+		i++;
+	}
+	removeBackgroundText();
+
+	printFooterTable();
+	printLabel("Select guna arrow Up/Down and Enter untuk padam", "Pess ESC to back");
 }

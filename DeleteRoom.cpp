@@ -1,36 +1,5 @@
 ﻿#include "Room.h"
 
-void Room::printTableDelete(int baris) {
-	system("cls");
-	printLabel("Padam Table");
-
-	printHeaderTable();
-
-	Node* temps = pHead;
-	int i = 1;
-
-	while (temps != nullptr) {
-
-		bool selected = (i == baris + 1);
-
-		if (selected) {
-			setBackgroundText();
-			printBodyTable(temps);
-		}
-		else {
-			removeBackgroundText();
-			printBodyTable(temps);
-		}
-
-		temps = temps->link;
-		i++;
-	}
-	removeBackgroundText();
-
-	printFooterTable();
-	printLabel("Select guna arrow Up/Down and Enter untuk padam", "Pess ESC to back");
-}
-
 void Room::padamLink(
 	bool found,
 	Node* &pHead,
@@ -105,13 +74,13 @@ void Room::DeleteRoomMain() {
 	//kalau link list kosong
 	if (pHead == nullptr) {
 		printLabel("Delete Room");
-		printTableDelete(baris);
+		ShowTableSelect(baris);
 		_getch();
 		return;
 	}
 
 	while (true) {
-		printTableDelete(baris);
+		ShowTableSelect(baris);
 		
 		string action = handleArrow(baris, totalRoom);
 

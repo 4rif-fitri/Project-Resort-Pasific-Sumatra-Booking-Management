@@ -94,6 +94,7 @@ public:
 		return "";
 	}
 
+	void ShowTableSelect(int baris);
 	// Utiliti ================
 
 	//Show implementation ================
@@ -146,6 +147,16 @@ public:
 	void padam(int& baris);
 	void DeleteRoomMain();
 	//Delete implementation ================
+	
+
+
+	//Add Booking implementation ================
+	
+	void jalan(int baris, Node*& targetNode);
+	void bookInputData(int baris);
+	void AddbookingMain();
+	 
+	//Add Booking implementation ================
 
 
 	//remove
@@ -181,5 +192,6 @@ public:
 		}
 	}
 	//remove
+
 
 };

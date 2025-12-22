@@ -127,6 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AddBooking.cpp" />
     <ClCompile Include="AddRoom.cpp" />
     <ClCompile Include="DeleteRoom.cpp" />
     <ClCompile Include="New DSA Project.cpp" />

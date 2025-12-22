@@ -34,18 +34,19 @@ void main() {
 		"Show Table Room",
 		"Sort Room By harga",
 		"Search Room By Price",
+		"Add Booking Room",
 		"Delete Room",
 		"Exit",
 	};
 
-	//room.InsertDefaultNode("Ocean Front", 500.00, "VIP",
-	//	"Booked", "2025/12/10", "2025/12/15", "Paid");
-	//room.InsertDefaultNode("Sunset View", 350.00, "Deluxe",
-	//	"Yes");
-	//room.InsertDefaultNode("Family Hall A", 480.00, "Family",
-	//	"Booked", "2025/12/12", "2025/12/14", "Deposit");
-	//room.InsertDefaultNode("Garden Suite", 220.50, "Standard",
-	//	"Yes");
+	room.InsertDefaultNode("Ocean Front", 500.00, "VIP",
+		"Booked", "2025/12/10", "2025/12/15", "Paid");
+	room.InsertDefaultNode("Sunset View", 350.00, "Deluxe",
+		"Yes");
+	room.InsertDefaultNode("Family Hall A", 480.00, "Family",
+		"Booked", "2025/12/12", "2025/12/14", "Deposit");
+	room.InsertDefaultNode("Garden Suite", 220.50, "Standard",
+		"Yes");
 
 	int length = sizeof(menuList) / sizeof(*menuList);
 	int baris = 0;
@@ -64,8 +65,9 @@ void main() {
 			else if (baris == 1) room.ShowRoomMain();
 			else if (baris == 2) room.SortRoomMain();
 			else if (baris == 3) room.SearchRoomMain();
-			else if (baris == 4) room.DeleteRoomMain();
-			else if (baris == 5) break;
+			else if (baris == 4) room.AddbookingMain();
+			else if (baris == 5) room.DeleteRoomMain();
+			else if (baris == 6) break;
 		}
 	}
 
