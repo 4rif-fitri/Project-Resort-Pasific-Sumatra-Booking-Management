@@ -4,7 +4,7 @@ using namespace std;
 
 void main() {
 	Room room;
-
+	//lorem
 	string menuList[] = {
 		"Add Room",
 		"Show Table Room",
