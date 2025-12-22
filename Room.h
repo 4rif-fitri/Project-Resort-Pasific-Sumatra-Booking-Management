@@ -103,7 +103,6 @@ public:
 	//Show implementation  ================
 
 	//Add implementation ================
-	void displayDoneAdd();
 	void AddRoomMain();
 	//Add implementation ================
 
@@ -148,14 +147,10 @@ public:
 	void DeleteRoomMain();
 	//Delete implementation ================
 	
-
-
 	//Add Booking implementation ================
-	
 	void jalan(int baris, Node*& targetNode);
 	void bookInputData(int baris);
 	void AddbookingMain();
-	 
 	//Add Booking implementation ================
 
 

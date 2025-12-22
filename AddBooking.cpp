@@ -27,23 +27,32 @@ void Room::bookInputData(int baris) {
 
 	jalan(baris, targetNode);
 	system("cls");
+	printLabel("Add Booking Room");
 	ShowOne(targetNode);
 
 	cout << "Sila Masukkan Detail Booking > " << endl;
 	isTersedia = getType(optionsAvailable, countPilihanAvailable);
 
-	tahunIn = getIntt("Masukkan Tahun Masuk :", "Masukkan Nombor sahaja");
-	mountIn = getIntt("Masukkan Bulan Masuk :", "Masukkan Nombor sahaja");
-	dayIN = getIntt("Masukkan Hari Masuk :","Masukkan Nombor sahaja");
+	if (isTersedia == "Free") {
+		tarikhIn = "-";
+		tarikhOut = "-";
+		typePayment = "-";
+	}
+	else if (isTersedia == "Booked") {
+		tahunIn = getIntt("Masukkan Tahun Masuk :", "Masukkan Nombor sahaja");
+		mountIn = getIntt("Masukkan Bulan Masuk :", "Masukkan Nombor sahaja");
+		dayIN = getIntt("Masukkan Hari Masuk :","Masukkan Nombor sahaja");
 
-	tahunOut = getIntt("Masukkan Tahun keluar :", "Masukkan Nombor sahaja");
-	mountOut = getIntt("Masukkan Bulan Masuk :", "Masukkan Nombor sahaja");
-	dayOut = getIntt("Masukkan hari Masuk :", "Masukkan Nombor sahaja");
+		tahunOut = getIntt("Masukkan Tahun keluar :", "Masukkan Nombor sahaja");
+		mountOut = getIntt("Masukkan Bulan Masuk :", "Masukkan Nombor sahaja");
+		dayOut = getIntt("Masukkan hari Masuk :", "Masukkan Nombor sahaja");
+	
+		typePayment = getType(optionPayment, countPilihanPayment);
 
-	typePayment = getType(optionPayment, countPilihanPayment);
+		tarikhIn = to_string(tahunIn) + "/" + to_string(mountIn) + "/" + to_string(dayIN);
+		tarikhOut = to_string(tahunOut) + "/" + to_string(mountOut) + "/" + to_string(dayOut);
+	}
 
-	tarikhIn = to_string(tahunIn) + "/" + to_string(mountIn) + "/" + to_string(dayIN);
-	tarikhOut = to_string(tahunOut) + "/" + to_string(mountOut) + "/" + to_string(dayOut);
 
 	targetNode->dateChackIn = tarikhIn;
 	targetNode->dateChackOut = tarikhOut;
@@ -58,6 +67,8 @@ void Room::AddbookingMain() {
 	int baris = 0;
 
 	while (true) {
+		system("cls");
+		printLabel("Add Booking Room");
 		ShowTableSelect(baris);
 
 		string action = handleArrow(baris, totalRoom);

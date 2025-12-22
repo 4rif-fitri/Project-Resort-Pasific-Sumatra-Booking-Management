@@ -1,11 +1,5 @@
 #include "Room.h"
 
-void Room::displayDoneAdd() {
-	system("cls");
-	printLabel("Done Add Room...");
-	ShowAll();
-}
-
 void Room::AddRoomMain() {
 	while (true) {
 		system("cls");
@@ -52,7 +46,9 @@ void Room::AddRoomMain() {
 		
 		}
 
-		displayDoneAdd();
+		system("cls");
+		printLabel("Add Room");
+		ShowAll();
 
 		if (!sambung()) break;
 	}

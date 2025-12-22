@@ -287,8 +287,6 @@ string Room::getType(string options[], int count_pilihan) {
 }
 
 void Room::ShowTableSelect(int baris) {
-	system("cls");
-	printLabel("Padam Table");
 
 	printHeaderTable();
 

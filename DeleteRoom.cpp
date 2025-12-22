@@ -80,6 +80,8 @@ void Room::DeleteRoomMain() {
 	}
 
 	while (true) {
+		system("cls");
+		printLabel("Padam Room");
 		ShowTableSelect(baris);
 		
 		string action = handleArrow(baris, totalRoom);
