@@ -1,6 +1,6 @@
 #include "Room.h"
 
-void Room::jalan(int baris, Node*& targetNode) { // dapatkan node yg user pilih
+void Room::jalan(int baris, Node*& targetNode) { // dapatkan node yg user pilih.
 	targetNode = pHead;
 	for (int i = 0; i < baris; i++){
 		targetNode = targetNode->link;
