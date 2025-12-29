@@ -98,7 +98,6 @@ public:
 
 	//Show implementation ================
 	void ShowRoomMain();
-	void printTableDelete(int baris);
 	//Show implementation  ================
 
 	//Add implementation ================
