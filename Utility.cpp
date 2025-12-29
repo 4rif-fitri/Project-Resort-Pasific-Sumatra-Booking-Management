@@ -289,7 +289,6 @@ void Room::ShowMenu(string text, string text2, string text3, string text4, int b
 	printLabel(text3, text4);
 }
 
-
 void Room::getDate(int& tahun, int& mount, int& day, string type) {
 	int yeer[] = { 2024,2025,2026 };
 	int bulan[] = { 1,2,3,4,5,6,7,8,9,10,11,12 };
@@ -299,3 +298,46 @@ void Room::getDate(int& tahun, int& mount, int& day, string type) {
 	getDateDay(day);
 }
 
+string Room::handleArrow(int& baris, int length) {
+	char key = _getch();
+
+	if (key == 27) return "esc";      // ESC
+	if (key == 13) return "enter";    // ENTER
+	if (key == 0 || key == -32) {
+		switch (_getch()) {
+		case 72: // UP
+			baris = (baris == 0) ? length - 1 : baris - 1;
+			break;
+		case 80: // DOWN
+			baris = (baris + 1) % length;
+			break;
+		}
+	}
+	return "";
+}
+
+void Room::clear() {
+	system("cls");
+
+}
+
+void Room::nextLine() {
+	cout << endl;
+}
+
+void Room::getDateDay(int& input) {
+	while (true) {
+		cout << "Masukkan hari : ";
+		cin >> input;
+		if (!cin.fail() && input > 0 && input <= 31) {
+			return;
+		}
+		cout << "\tHey Input Invalid! \n";
+		cin.clear();
+		cin.ignore(numeric_limits<streamsize>::max(), '\n');
+	}
+}
+
+string Room::convertDateToString(int year, int mount, int day) {
+	return to_string(year) + "/" + to_string(mount) + "/" + to_string(day);
+}
