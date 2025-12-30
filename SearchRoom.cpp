@@ -1,5 +1,49 @@
 #include "Room.h"
 
+
+
+void Room::SearchRoomMain() {
+    string listCari[] = {
+        "Sequential Search",
+        "Binary Search"
+    };
+
+    int length = 2;
+    int baris = 0;
+    char arrow;
+    double priceRoom;
+
+    while (true) {
+        ShowMenu("MENU CARIAN BILIK", "Cari Berdasarkan Harga menggunakan...", "Guna Arrow Up/Down untuk pilih", "Esc untuk back", baris, length, listCari);
+
+        string action = handleArrow(baris, length);
+
+        if (action == "esc") break; //esc
+
+        if (action == "enter") { // enter
+            system("cls");
+            printLabel("Search Price Room");
+                
+            priceRoom = getDoublee("Masukkan Price Room : ","Input tidak sah. Sila masukkan nombor >= 0");
+
+            if (baris == 0) sequentialSearch(priceRoom);
+            else if (baris == 1) binarySearch(priceRoom);
+
+            printLabel("Pess ESC to back");
+            _getch();
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
 Room::Node* getMiddle(Room::Node* start, Room::Node* last) {
     if (start == nullptr) return nullptr;
     Room::Node* slow = start;
@@ -60,38 +104,4 @@ void Room::binarySearch(double hargaCarian) {
     }
 
     if (!found) cout << "Bilik dengan harga RM" << hargaCarian << " tidak ditemui." << endl;
-}
-
-void Room::SearchRoomMain() {
-    string listCari[] = {
-        "Sequential Search",
-        "Binary Search"
-    };
-
-    int length = 2;
-    int baris = 0;
-    char arrow;
-    double priceRoom;
-
-    while (true) {
-        ShowMenu("MENU CARIAN BILIK", "Cari Berdasarkan Harga menggunakan...", "Guna Arrow Up/Down untuk pilih", "Esc untuk back", baris, length, listCari);
-
-        string action = handleArrow(baris, length);
-
-        if (action == "esc") break; //esc
-
-        if (action == "enter") { // enter
-            system("cls");
-            printLabel("Search Price Room");
-                
-            priceRoom = getDoublee("Masukkan Price Room : ",
-                "Input tidak sah. Sila masukkan nombor >= 0");
-
-            if (baris == 0) sequentialSearch(priceRoom);
-            else if (baris == 1) binarySearch(priceRoom);
-
-            printLabel("Pess ESC to back");
-            _getch();
-        }
-    }
 }

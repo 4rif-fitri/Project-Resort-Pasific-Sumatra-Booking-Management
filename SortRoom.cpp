@@ -1,5 +1,43 @@
 #include "Room.h"
 
+
+
+void Room::SortRoomMain() {
+    system("cls");
+    printLabel("Sort Room by Price using quickSort");
+
+    if (pHead == nullptr || pHead->link == nullptr) {
+        cout << "Bilik tidak cukup untuk disusun" << endl;
+    }
+    else {
+        quickSort();
+        cout << "Bilik berjaya disusun (Quick Sort)!" << endl;
+    }
+    ShowAll();
+    printLabel("Pess ESC to back");
+    _getch();
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 void Room::getTail(Node* cur, Node*& tail) {
     if (cur == nullptr) {
         tail = nullptr;
@@ -11,7 +49,7 @@ void Room::getTail(Node* cur, Node*& tail) {
     tail = cur;
 }
 
-void Room::partition(Node* head, Node* end, Node*& newHead, Node*& newEnd, Node*& pivotOut){
+void Room::partition(Node* head, Node* end, Node*& newHead, Node*& newEnd, Node*& pivotOut) {
     Node* pivot = end;
     Node* prev = nullptr, * cur = head, * tail = pivot;
 
@@ -42,7 +80,7 @@ void Room::quickSortRecursive(Node*& headRef, Node* end) {
     // Base case: jika list kosong atau cuma ada 1 node
     if (!headRef || headRef == end) return;
 
-    Node* newHead = nullptr; 
+    Node* newHead = nullptr;
     Node* newEnd = nullptr;
     Node* pivot = nullptr;
 
@@ -73,20 +111,4 @@ void Room::quickSort() {
     Node* tail = nullptr;
     getTail(pHead, tail);
     quickSortRecursive(pHead, tail);
-}
-
-void Room::SortRoomMain() {
-    system("cls");
-    printLabel("Sort Room by Price using quickSort");
-
-    if (pHead == nullptr || pHead->link == nullptr) {
-        cout << "Bilik tidak cukup untuk disusun" << endl;
-    }
-    else {
-        quickSort();
-        cout << "Bilik berjaya disusun (Quick Sort)!" << endl;
-    }
-    ShowAll();
-    printLabel("Pess ESC to back");
-    _getch();
 }

@@ -54,24 +54,24 @@ public:
 	//Add implementation			================
 
 	//Sort implementation			================
-	void getTail(Node* cur, Node*& tail);
-	void partition(Node* head, Node* end, Node*& newHead, Node*& newEnd, Node*& pivotOut);
-	void quickSortRecursive(Node*& headRef, Node* end);
-	void quickSort();
+	void getTail(Node* cur, Node*& tail); // remove
+	void partition(Node* head, Node* end, Node*& newHead, Node*& newEnd, Node*& pivotOut); // remove
+	void quickSortRecursive(Node*& headRef, Node* end);// remove
+	void quickSort();// remove
 	void SortRoomMain();
 	//Sort implementation			================
 
 	//Search implementation			================
-	void sequentialSearch(double hargaCarian);
-	void binarySearch(double hargaCarian);
+	void sequentialSearch(double hargaCarian); // remove
+	void binarySearch(double hargaCarian); // remove
 	void SearchRoomMain();
 	//Search implementation			================	
 
 	//Delete implementation			================
-	void padamLink(bool found,Node* &pHead,Node* &pPrev,Node* &pCurr);
-	void cari(int counter, int& indexToFind, bool& found, int& deletedRoomNumber, Node*& pPrev, Node*& pCurr);
-	void padam(int& baris);
-	void DeleteRoomMain();
+	void padamLink(bool found,Node* &pHead,Node* &pPrev,Node* &pCurr);// remove
+	void cari(int counter, int& indexToFind, bool& found, int& deletedRoomNumber, Node*& pPrev, Node*& pCurr);// remove
+	void padam(int& baris);// remove
+	void DeleteRoomMain();// remove
 	//Delete implementation			================
 	
 	//Add Booking implementation	================
@@ -112,7 +112,7 @@ public:
 			}
 			temp->link = pNew;
 		}
-	}
+	}// remove
 	//remove
 
 	// Utiliti boleh guna banyak kali	================
