@@ -45,6 +45,7 @@ void Room::printHeaderTable() {
 
 	for (int i = 0; i < 7; i++) {
 		for (int i = 0; i < 14; i++) cout << hor;
+
 		cout << tee_top;
 	}
 
@@ -55,7 +56,7 @@ void Room::printHeaderTable() {
 		<< setw(14) << "Number Room" << ver
 		<< setw(14) << "Name" << ver
 		<< setw(14) << "Type" << ver
-		<< setw(14) << "Price" << ver
+		<< setw(14) << "Price(RM)" << ver
 		<< setw(14) << "Available" << ver
 		<< setw(14) << "Date ChackIn" << ver
 		<< setw(14) << "Date ChackOut" << ver
@@ -125,12 +126,11 @@ void Room::ShowOne(Node* one) {
 double Room::getDoublee(string textInput, string textError) {
 	double input;
 	while (true) {
-		cout << textInput;;
+		cout << textInput;
 		cin >> input;
-		if (!cin.fail() && input >= 0) {
-			cin.ignore(numeric_limits<streamsize>::max(), '\n');
-			return input;
-		}
+		
+		if (!cin.fail() && input >= 0) return input;
+		
 		cin.clear();
 		cin.ignore(numeric_limits<streamsize>::max(), '\n');
 		cout << textError << "\n";
@@ -142,9 +142,9 @@ double Room::getIntt(string textInput, string textError) {
 	while (true) {
 		cout << textInput;;
 		cin >> input;
-		if (!cin.fail() && input >= 0) {
-			return input;
-		}
+
+		if (!cin.fail() && input >= 0) return input;
+
 		cin.clear();
 		cin.ignore(numeric_limits<streamsize>::max(), '\n');
 		cout << textError << "\n";

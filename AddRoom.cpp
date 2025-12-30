@@ -18,7 +18,7 @@ void Room::AddRoomMain() {
 		cout << "\nMasukkan Detail Room\n";
 		name = getStringg("Name Room :","Name Room Tidak boleh kosong");
 		type = optionBaris<string>(options, lenght,"Type room : ");
-		price = getDoublee("Price : ","Masukkan nombor sahaja");
+		price = getDoublee("Price : ","Invalid price");
 
 		totalRoom = totalRoom++;
 
