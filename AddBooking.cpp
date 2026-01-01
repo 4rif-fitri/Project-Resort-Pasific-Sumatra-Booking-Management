@@ -46,11 +46,28 @@ void Room::bookInputData(int baris) {
 		typePayment = "-";
 	}
 	else if (isTersedia == "Booked") { //if kalau ade yg nak book
-		nextLine(); // endl
-		getDate(tahunIn, mountIn, dayIN, "masuk"); //get Date In
-		nextLine();	//endl
-		getDate(tahunOut, mountOut, dayOut, "keluuar");	//get Date Out
-		nextLine();	//endl
+		while (true){
+
+			nextLine(); // endl
+			getDate(tahunIn, mountIn, dayIN, "masuk"); //get Date In
+			nextLine();	//endl
+			getDate(tahunOut, mountOut, dayOut, "keluuar");	//get Date Out
+			nextLine();	//endl
+			
+			long dateIn = (tahunIn * 10000) + (mountIn * 100) + dayIN;
+			long dateOut = (tahunOut * 10000) + (mountOut * 100) + dayOut;
+
+			if (dateOut < dateIn) {
+				cout << "\tTarikh Masuk Lebih Besar dari tarikh Keluar!\n\t";
+				cout << convertDateToString(tahunIn, mountIn, dayIN) << " > " << convertDateToString(tahunOut, mountOut, dayOut);
+			}
+			else if (dateOut == dateIn) {
+				cout << "\tTarikh Masuk same dengan tarikh Keluar?\n\t";
+				cout << convertDateToString(tahunIn, mountIn, dayIN) << " == " << convertDateToString(tahunOut, mountOut, dayOut);
+			} 
+			else if (dateOut > dateIn) break;
+			nextLine();
+		}
 
 		typePayment = optionBaris<string>(optionPayment, countPilihanPayment,"Payment : "); //get payment method, guna arrow left/right
 
