@@ -54,8 +54,8 @@ void Room::bookInputData(int baris) {
 			getDate(tahunOut, mountOut, dayOut, "keluuar");	//get Date Out
 			nextLine();	//endl
 			
-			long dateIn = (tahunIn * 10000) + (mountIn * 100) + dayIN;
-			long dateOut = (tahunOut * 10000) + (mountOut * 100) + dayOut;
+			long dateIn = (tahunIn * 10000) + (mountIn * 100) + dayIN; //20240501
+			long dateOut = (tahunOut * 10000) + (mountOut * 100) + dayOut; //20250101
 
 			if (dateOut < dateIn) {
 				cout << "\tTarikh Masuk Lebih Besar dari tarikh Keluar!\n\t";
