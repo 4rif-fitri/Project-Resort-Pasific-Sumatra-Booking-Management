@@ -7,11 +7,31 @@
 
 #include "Room.h"
 
- 
+ void Room::binarySearch(double harga) {
+    cout << "lorem";
+    //kalau dah junpa guba ni 
+    //ShowOne(curr); untuk show
+}
 
+void Room::sequentialSearch(double harga) {
+    Node* curr = pHead;
+    bool found = false;
 
+    while (curr != nullptr) {
+        if (curr->price == harga) {
+            cout << "JUMPA (Sequential Search)\n";
+            ShowOne(curr);   // papar maklumat bilik
+            found = true;
+            break;           // hentikan carian bila jumpa
+        }
+        curr = curr->link;   // pergi ke node seterusnya
+    }
 
-
+    if (!found) {
+        cout << "Bilik dengan harga RM"
+            << fixed << setprecision(2)
+            << harga << " tidak ditemui.\n";
+    }
 
 
 void Room::SearchRoomMain() { //main func search
@@ -38,8 +58,8 @@ void Room::SearchRoomMain() { //main func search
             //get price room
             priceRoom = getDoublee("Masukkan Price Room : ","Input tidak sah. Sila masukkan nombor >= 0");
 
-            //if (baris == 0) sequentialSearch(priceRoom);
-            //else if (baris == 1) binarySearch(priceRoom);
+            if (baris == 0) sequentialSearch(priceRoom);
+            else if (baris == 1) binarySearch(priceRoom);
 
             printLabel("Pess ESC to back"); //print label bawah
             _getch();   //stop sekejap dapatkan action from user, sebelum back ke page sebelum ni
