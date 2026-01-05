@@ -34,6 +34,42 @@ void quickSort(double arr[], int low, int high) {
     }
 }
 
+void Room::sort() {
+    double prices[100];
+    Node* nodes[100];
+
+    int count = 0;
+    Node* temp = pHead;
+
+    while (temp != nullptr) {
+        prices[count] = temp->price;
+        nodes[count] = temp;
+        count++;
+        temp = temp->link;
+    }
+
+    // ================= STEP 2: Quick Sort harga =================
+    quickSort(prices, 0, count - 1);
+
+    // ================= STEP 3: Susun semula data bilik =================
+    for (int i = 0; i < count; i++) {
+        for (int j = i; j < count; j++) {
+            if (nodes[j]->price == prices[i]) {
+                // tukar DATA sahaja (BUKAN pointer)
+                swap(nodes[i]->name, nodes[j]->name);
+                swap(nodes[i]->roomNumber, nodes[j]->roomNumber);
+                swap(nodes[i]->price, nodes[j]->price);
+                swap(nodes[i]->type, nodes[j]->type);
+                swap(nodes[i]->isaVailable, nodes[j]->isaVailable);
+                swap(nodes[i]->dateChackIn, nodes[j]->dateChackIn);
+                swap(nodes[i]->dateChackOut, nodes[j]->dateChackOut);
+                swap(nodes[i]->payment, nodes[j]->payment);
+                break;
+            }
+        }
+    }
+}
+
 void Room::SortRoomMain() {
     clear();
     printLabel("Sort Room by Price using Quick Sort");
@@ -43,40 +79,8 @@ void Room::SortRoomMain() {
     }
     else {
         // ================= STEP 1: Simpan harga ke array =================
-        double prices[100];
-        Node* nodes[100];
-
-        int count = 0;
-        Node* temp = pHead;
-
-        while (temp != nullptr) {
-            prices[count] = temp->price;
-            nodes[count] = temp;
-            count++;
-            temp = temp->link;
-        }
-
-        // ================= STEP 2: Quick Sort harga =================
-        quickSort(prices, 0, count - 1);
-
-        // ================= STEP 3: Susun semula data bilik =================
-        for (int i = 0; i < count; i++) {
-            for (int j = i; j < count; j++) {
-                if (nodes[j]->price == prices[i]) {
-                    // tukar DATA sahaja (BUKAN pointer)
-                    swap(nodes[i]->name, nodes[j]->name);
-                    swap(nodes[i]->roomNumber, nodes[j]->roomNumber);
-                    swap(nodes[i]->price, nodes[j]->price);
-                    swap(nodes[i]->type, nodes[j]->type);
-                    swap(nodes[i]->isaVailable, nodes[j]->isaVailable);
-                    swap(nodes[i]->dateChackIn, nodes[j]->dateChackIn);
-                    swap(nodes[i]->dateChackOut, nodes[j]->dateChackOut);
-                    swap(nodes[i]->payment, nodes[j]->payment);
-                    break;
-                }
-            }
-        }
-
+        
+        sort();
         cout << "Bilik berjaya disusun (Quick Sort)!" << endl;
     }
 

@@ -8,6 +8,8 @@
 #include "Room.h"
 void Room::binarySearch(double harga) {
 
+        
+
         Node* start = pHead;
         Node* last = nullptr;
         bool found = false;
@@ -69,7 +71,7 @@ void Room::sequentialSearch(double harga) {
             << fixed << setprecision(2)
             << harga << " tidak ditemui.\n";
     }
-
+}
 
 void Room::SearchRoomMain() { //main func search
     string listCari[] = { //pilihan

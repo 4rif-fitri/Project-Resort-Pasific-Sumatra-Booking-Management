@@ -55,14 +55,22 @@ public:
 
 	//init data
 	Room() {
-		for (int i = 0; i < 5; i++) {
-			Node* pNew = new Node();
+		// Harga sengaja tidak disusun (rawak)
+		double hargaDefault[20] = {
+			300, 150, 500, 200, 450,
+			100, 350, 250, 400, 175,
+			275, 425, 125, 375, 225,
+			325, 475, 50, 425, 180
+		};
 
+		for (int i = 0; i < 20; i++) {
+
+			Node* pNew = new Node();
 			totalRoom++;
 
 			pNew->roomNumber = totalRoom;
 			pNew->name = "lorem";
-			pNew->price = 123;
+			pNew->price = hargaDefault[i];   // ❗ TIDAK SORTED
 			pNew->type = "VIP";
 
 			pNew->isaVailable = "Free";
@@ -72,7 +80,7 @@ public:
 
 			pNew->link = nullptr;
 
-			// Logik Linked List
+			// Insert hujung linked list
 			if (pHead == nullptr) {
 				pHead = pNew;
 			}
@@ -85,6 +93,7 @@ public:
 			}
 		}
 	}
+
 	~Room() {};
 
 	//Show implementation			================ Arif
@@ -98,7 +107,7 @@ public:
 	//Sort implementation			================ RAED HAZEEQ
 
 
-
+	void sort();
 	void SortRoomMain();
 	//================
 
