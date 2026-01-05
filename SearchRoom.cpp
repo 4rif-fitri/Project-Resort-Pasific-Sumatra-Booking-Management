@@ -10,46 +10,45 @@ void Room::binarySearch(double harga) {
 
     sort();
         
+    Node* start = pHead;
+    Node* last = nullptr;
+    bool found = false;
 
-        Node* start = pHead;
-        Node* last = nullptr;
-        bool found = false;
+    while (start != last) {
+        Node* slow = start;
+        Node* fast = start->link;
 
-        while (start != last) {
-            Node* slow = start;
-            Node* fast = start->link;
-
-            // cari node tengah
-            while (fast != last) {
+        // cari node tengah
+        while (fast != last) {
+            fast = fast->link;
+            if (fast != last) {
+                slow = slow->link;
                 fast = fast->link;
-                if (fast != last) {
-                    slow = slow->link;
-                    fast = fast->link;
-                }
-            }
-
-            Node* mid = slow;
-            if (mid == nullptr) break;
-
-            if (mid->price == harga) {
-                cout << "\nJUMPA (Binary Search)\n";
-                ShowOne(mid);
-                found = true;
-                break;
-            }
-            else if (mid->price < harga) {
-                start = mid->link;
-            }
-            else {
-                last = mid;
             }
         }
 
-        if (!found) {
-            cout << "\nBilik dengan harga RM"
-                 << fixed << setprecision(2)
-                 << harga << " tidak ditemui.\n";
+        Node* mid = slow;
+        if (mid == nullptr) break;
+
+        if (mid->price == harga) {
+            cout << "\nJUMPA (Binary Search)\n";
+            ShowOne(mid);
+            found = true;
+            break;
         }
+        else if (mid->price < harga) {
+            start = mid->link;
+        }
+        else {
+            last = mid;
+        }
+    }
+
+    if (!found) {
+        cout << "\nBilik dengan harga RM"
+                << fixed << setprecision(2)
+                << harga << " tidak ditemui.\n";
+    }
 }
 //kalau dah junpa guba
 
@@ -106,100 +105,3 @@ void Room::SearchRoomMain() { //main func search
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//Room::Node* getMiddle(Room::Node* start, Room::Node* last) {
-//    if (start == nullptr) return nullptr;
-//    Room::Node* slow = start;
-//    Room::Node* fast = start->link;
-//
-//    while (fast != last) {
-//        fast = fast->link;
-//        if (fast != last) {
-//            slow = slow->link;
-//            fast = fast->link;
-//        }
-//    }
-//    return slow;
-//}
-//
-//void Room::sequentialSearch(double hargaCarian) {
-//    // SEQUENTIAL SEARCH
-//
-//    Node* curr = pHead;
-//    bool found = false;
-//
-//    while (curr != nullptr) {
-//        if (curr->price == hargaCarian) {
-//            cout << "JUMPA (Sequential):" << endl;
-//            ShowOne(curr);
-//            found = true;
-//            break;
-//        }
-//        curr = curr->link;
-//    }
-//    if (!found) cout << "Bilik dengan harga RM" << hargaCarian << " tidak ditemui." << endl;
-//}
-//
-//void Room::binarySearch(double hargaCarian) {
-//    // BINARY SEARCH
-//    quickSort(); //sort dulu
-//
-//    Node* start = pHead;
-//    Node* last = nullptr;
-//    bool found = false;
-//
-//    while (start != last) {
-//        Node* mid = getMiddle(start, last);
-//        if (mid == nullptr) break;
-//
-//        if (mid->price == hargaCarian) {
-//            cout << "JUMPA (Binary):" << endl;
-//            ShowOne(mid);
-//            found = true;
-//            break;
-//        }
-//        else if (mid->price < hargaCarian) {
-//            start = mid->link;
-//        }
-//        else {
-//            last = mid;
-//        }
-//    }
-//
-//    if (!found) cout << "Bilik dengan harga RM" << hargaCarian << " tidak ditemui." << endl;
-//}

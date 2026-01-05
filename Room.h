@@ -55,32 +55,38 @@ public:
 
 	//init data
 	Room() {
-		// Harga sengaja tidak disusun (rawak)
-		double hargaDefault[20] = {
-			300, 150, 500, 200, 450,
-			100, 350, 250, 400, 175,
-			275, 425, 125, 375, 225,
-			325, 475, 50, 425, 180
-		};
 
-		for (int i = 0; i < 20; i++) {
+		double hargaDefault[5] = {300, 150, 500, 200, 450};
+
+		string namaDefault[5] = {"Emerald Room","Sapphire Room","Pearl Room","Silver Room","Crystal Room"};
+
+		string typeDefault[10] = {"Standard","Suite","Standard","Deluxe","Deluxe"};
+
+		string statusDefault[5] = {"Booked","Booked","Booked","Booked","Booked"};
+
+		string paymentDefault[5] = {"Cash","BankIn","Cash","BankIn","Cash"};
+
+		string checkInDefault[5] = {"1/1/2025", "2/1/2025", "3/1/2025", "4/1/2025", "5/1/2025"};
+
+		string checkOutDefault[5] = {"2/1/2025", "3/1/2025", "4/1/2025", "5/1/2025", "6/1/2025"};
+
+		for (int i = 0; i < 5; i++) {
 
 			Node* pNew = new Node();
 			totalRoom++;
 
 			pNew->roomNumber = totalRoom;
-			pNew->name = "lorem";
-			pNew->price = hargaDefault[i];   // ❗ TIDAK SORTED
-			pNew->type = "VIP";
+			pNew->name = namaDefault[i];
+			pNew->price = hargaDefault[i]; 
+			pNew->type = typeDefault[i];
 
-			pNew->isaVailable = "Free";
-			pNew->dateChackIn = "1/1/2025";
-			pNew->dateChackOut = "2/1/2025";
-			pNew->payment = "BankIn";
+			pNew->isaVailable = statusDefault[i];
+			pNew->dateChackIn = checkInDefault[i];
+			pNew->dateChackOut = checkOutDefault[i];
+			pNew->payment = paymentDefault[i];
 
 			pNew->link = nullptr;
 
-			// Insert hujung linked list
 			if (pHead == nullptr) {
 				pHead = pNew;
 			}
@@ -94,6 +100,7 @@ public:
 		}
 	}
 
+
 	~Room() {};
 
 	//Show implementation			================ Arif
@@ -101,30 +108,20 @@ public:
 	//================
 
 	//Add implementation			================ Arif 
+	void addRoom();	
 	void AddRoomMain();
 	//================
 
 	//Sort implementation			================ RAED HAZEEQ
-
-
 	void sort();
 	void SortRoomMain();
 	//================
 
 	//Search implementation			================ FAHRUL AZWAN and DATU AMIRUL
-void binarySearch(double hargaCarian);
-void sequentialSearch(double hargaCarian);
-
-
+	void binarySearch(double hargaCarian);
+	void sequentialSearch(double hargaCarian);
 	void SearchRoomMain();
 	//================ 
-
-	//Delete implementation			================
-	//void padamLink(bool found,Node* &pHead,Node* &pPrev,Node* &pCurr);
-	//void cari(int counter, int& indexToFind, bool& found, int& deletedRoomNumber, Node*& pPrev, Node*& pCurr);
-	//void padam(int& baris);
-	//void DeleteRoomMain();
-	//================
 	
 	//Add Booking implementation	================ Arif
 	void findTargetNode(int baris, Node*& targetNode);
@@ -168,14 +165,13 @@ void sequentialSearch(double hargaCarian);
 	T optionBaris(T optionss[], int count_pilihan, string text); 
 	
 	//================
-
-	//void getTail(Node* cur, Node*& tail); // remove
-	//void partition(Node* head, Node* end, Node*& newHead, Node*& newEnd, Node*& pivotOut); // remove
-	//void quickSortRecursive(Node*& headRef, Node* end);// remove
-	//void quickSort();// remove
-	//===
-	//void sequentialSearch(double hargaCarian); // remove
-	//void binarySearch(double hargaCarian); // remove
+	
+	//================
+	//void padamLink(bool found,Node* &pHead,Node* &pPrev,Node* &pCurr);
+	//void cari(int counter, int& indexToFind, bool& found, int& deletedRoomNumber, Node*& pPrev, Node*& pCurr);
+	//void padam(int& baris);
+	//void DeleteRoomMain();
+	//================
 };
 
 #endif
@@ -199,30 +195,19 @@ void Room::showOptionBaris(int colum, T options[], int count_pilihan) {
 }
 
 template<typename T>
-T Room::optionBaris(T optionss[], int count_pilihan, string text) {
+T Room::optionBaris(T optionss[], int length, string text) {
 	string type;
 	char keybord;
 	int colum = 0;
 
 	while (true) {
 		cout << text;
-		showOptionBaris<T>(colum, optionss, count_pilihan);
+		showOptionBaris<T>(colum, optionss, length);
 
 		keybord = _getch(); //when click keyboard
 
-		if (keybord == 0 || keybord == -32) {
-			switch (_getch()) { //click keyboard
-
-			case 75: // LEFT
-				colum = (colum == 0) ? count_pilihan - 1 : colum - 1;
-				break;
-
-			case 77: // RIGHT
-				colum = (colum == count_pilihan - 1) ? 0 : colum + 1;
-				break;
-			}
-
-		}
+		if (keybord == 75) colum = (colum == 0) ? length - 1 : colum - 1; // left
+		else if (keybord == 77) colum = (colum + 1) % length; // right
 
 		if (keybord == 13) break; //click enter
 	}

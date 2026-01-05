@@ -35,6 +35,7 @@ void quickSort(double arr[], int low, int high) {
 }
 
 void Room::sort() {
+    // ================= STEP 1: Simpan harga ke array =================
     double prices[100];
     Node* nodes[100];
 
@@ -78,8 +79,6 @@ void Room::SortRoomMain() {
         cout << "Bilik tidak cukup untuk disusun" << endl;
     }
     else {
-        // ================= STEP 1: Simpan harga ke array =================
-        
         sort();
         cout << "Bilik berjaya disusun (Quick Sort)!" << endl;
     }

@@ -112,7 +112,7 @@ void Room::printFooterTable() {
 	cout << sss << endl;
 
 	//the output like this
-	// └──────────────┴──────────────┴─────────────┘
+	// └──────────────┴──────────────┴──────────────┴──────────────┴─────────────┘
 }
 
 void Room::ShowAll() {
@@ -278,18 +278,11 @@ void Room::getDate(int& tahun, int& mount, int& day, string type) {
 string Room::handleArrow(int& baris, int length) { 
 	char key = _getch(); // capture keyboard user
 
-	if (key == 27) return "esc";		// ESC
-	if (key == 13) return "enter";		// ENTER
-	if (key == 0 || key == -32) {		// Arrow key takde code so akan return 0 or -32 
-		switch (_getch()) { // baca lagi _getch untuk tentukan jenis arrow
-		case 72: // UP
-			baris = (baris == 0) ? length - 1 : baris - 1;
-			break;
-		case 80: // DOWN
-			baris = (baris + 1) % length;
-			break;
-		}
-	}
+	if (key == 27)		return "esc";		// ESC
+	if (key == 13)		return "enter";		// ENTER
+	if (key == 72)		baris = (baris == 0) ? length - 1 : baris - 1; //up
+	else if (key == 80) baris = (baris + 1) % length; // down
+
 	return "";
 }
 
