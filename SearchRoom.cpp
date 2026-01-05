@@ -8,6 +8,7 @@
 #include "Room.h"
 void Room::binarySearch(double harga) {
 
+    sort();
         
 
         Node* start = pHead;
